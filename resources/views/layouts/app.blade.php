@@ -1,80 +1,166 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+	<title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+	<!-- GOOGLE WEB FONT -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+	<!-- Scripts -->
+	<script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<!-- Fonts -->
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+	<!-- Styles -->
+	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+	<!-- BASE CSS -->
+	<link href="landing/css/bootstrap.min.css" rel="stylesheet">
+	<link href="landing/css/style.css" rel="stylesheet">
+	<link href="landing/css/menu.css" rel="stylesheet">
+	<link href="landing/css/vendors.css" rel="stylesheet">
+	<link href="landing/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+
+	<!-- YOUR CUSTOM CSS -->
+	<link href="landing/css/custom.css" rel="stylesheet">
+	@yield('styles')
+
+
+
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+	<div class="layer"></div>
+	<!-- Mobile menu overlay mask -->
 
-                    </ul>
+	<div id="preloader">
+		<div data-loader="circle-side"></div>
+	</div>
+	<!-- End Preload -->
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+	<header class="header_sticky">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-6">
+					<div id="logo_home">
+						<h1><a href="index.html" title="Findoctor">Findoctor</a></h1>
+					</div>
+				</div>
+				<nav class="col-lg-9 col-6">
+					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="#0"><span>Menu
+							mobile</span></a>
+					<ul id="top_access">
+						<li><a href="{{ route('login') }}"><i class="pe-7s-user"></i></a></li>
+						<li><a href="{{ route('register') }}"><i class="pe-7s-add-user"></i></a></li>
+					</ul>
+					<div class="main-menu">
+						<ul>
+							<li><a href="{{ route('home') }}">Home</i></a></li>
+							<li><a href="{{ route('about') }}">About Us</a></li>
+							<li><a href="{{ route('search') }}">Search Doctors</a></li>
+							<li><a href="{{ route('contact') }}">Contact Us</a></li>
+						</ul>
+					</div>
+					<!-- /main-menu -->
+				</nav>
+			</div>
+		</div>
+		<!-- /container -->
+	</header>
+	<!-- /header -->
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+	<main>
+		@yield('content')
+	</main>
+	<!-- /main content -->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+	<footer>
+		<div class="container margin_60_35">
+			<div class="row">
+				<div class="col-lg-3 col-md-12">
+					<p>
+						<a href="index.html" title="Findoctor">
+							<img src="landing/img/logo.png" data-retina="true" alt="" width="163" height="36"
+								class="img-fluid">
+						</a>
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<h5>About</h5>
+					<ul class="links">
+						<li><a href="{{ route('about') }}">About us</a></li>
+						<li><a href="{{ route('faq') }}">FAQ</a></li>
+						<li><a href="{{ route('login') }}">Login</a></li>
+						<li><a href="{{ route('register') }}">Register</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<h5>Useful links</h5>
+					<ul class="links">
+						<li><a href="#0">Doctors</a></li>
+						<li><a href="#0">Clinics</a></li>
+						<li><a href="#0">Specialization</a></li>
+						<li><a href="#0">Join as a Doctor</a></li>
+						<li><a href="#0">Download App</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-3 col-md-4">
+					<h5>Contact with Us</h5>
+					<ul class="contacts">
+						<li><a href="tel://61280932400"><i class="icon_mobile"></i> + 61 23 8093 3400</a></li>
+						<li><a href="mailto:info@findoctor.com"><i class="icon_mail_alt"></i> help@findoctor.com</a>
+						</li>
+					</ul>
+					<div class="follow_us">
+						<h5>Follow us</h5>
+						<ul>
+							<li><a href="#0"><i class="social_facebook"></i></a></li>
+							<li><a href="#0"><i class="social_twitter"></i></a></li>
+							<li><a href="#0"><i class="social_linkedin"></i></a></li>
+							<li><a href="#0"><i class="social_instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--/row-->
+			<hr>
+			<div class="row">
+				<div class="col-md-8">
+					<ul id="additional_links">
+						<li><a href="#0">Terms and conditions</a></li>
+						<li><a href="#0">Privacy</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<div id="copy">© 2017 Findoctor</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--/footer-->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+	<!-- Back to top button -->
+	<div id="toTop"></div>
+
+	<!-- COMMON SCRIPTS -->
+	<script src="landing/js/jquery-3.5.1.min.js"></script>
+	<script src="landing/js/common_scripts.min.js"></script>
+	<script src="landing/js/functions.js"></script>
+
+	<!-- SPECIFIC SCRIPTS -->
+	@yield('scripts')
+
 </body>
+
 </html>
