@@ -30,3 +30,4 @@ Route::get('/search-doctors', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('admin/posts', 'Admin\PostsController');
