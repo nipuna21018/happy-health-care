@@ -32,3 +32,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('admin/doctors', 'Admin\DoctorsController');
 Route::resource('admin/pharmacies', 'Admin\PharmaciesController');
+Route::resource('admin/patients', 'Admin\PatientsController');
