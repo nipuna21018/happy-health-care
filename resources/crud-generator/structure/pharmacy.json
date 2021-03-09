@@ -62,8 +62,8 @@
             "rules": "required|email|max:60"
         },
         {
-            "field": "registration_number|max:10",
-            "rules": "required"
+            "field": "registration_number",
+            "rules": "required|max:10"
         },
         {
             "field": "email",
@@ -71,7 +71,7 @@
         },
         {
             "field": "pharmacy_name",
-            "rules": "required|string|size:40"
+            "rules": "required|string|max:40"
         },
         {
             "field": "contact_number",
