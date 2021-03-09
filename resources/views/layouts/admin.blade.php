@@ -54,9 +54,15 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="index.html">
+					<a class="nav-link" href="{{route('doctors.index')}}">
 						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Dashboard</span>
+						<span class="nav-link-text">Doctors</span>
+					</a>
+				</li>
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+					<a class="nav-link" href="{{route('pharmacies.index')}}">
+						<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text">Pharmacies</span>
 					</a>
 				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">

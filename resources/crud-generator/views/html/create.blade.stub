@@ -3,7 +3,7 @@
 @section('content')
      
 <div class="card">
-    <div class="card-header">Create New %%modelName%%</div>
+    <div class="card-header"><h5 class="mb-0">Create New %%modelName%%</h5></div>
     <div class="card-body">
         <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
         <br />
