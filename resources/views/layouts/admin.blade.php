@@ -65,6 +65,12 @@
 						<span class="nav-link-text">Pharmacies</span>
 					</a>
 				</li>
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+					<a class="nav-link" href="{{route('patients.index')}}">
+						<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text">Patients</span>
+					</a>
+				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
 					<a class="nav-link" href="messages.html">
 						<i class="fa fa-fw fa-envelope-open"></i>
