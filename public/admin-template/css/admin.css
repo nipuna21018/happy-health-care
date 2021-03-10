@@ -1091,3 +1091,8 @@ select.form-control:not([size]):not([multiple]) {
 .sbOptions .sbSub {
   padding-left: 17px;
 }
+
+.has-error input{
+  border-color: #dc3545;
+  color: #dc3545;
+}

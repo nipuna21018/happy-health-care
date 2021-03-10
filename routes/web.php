@@ -40,3 +40,4 @@ Route::resource('admin/doctors', 'Admin\DoctorsController');
 
 Route::resource('admin/doctors', 'Admin\DoctorsController');
 Route::resource('admin/doctors', 'Admin\DoctorsController');
+Route::resource('admin/doctor-specializations', 'Admin\DoctorSpecializationsController');
