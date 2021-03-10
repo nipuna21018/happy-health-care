@@ -9,6 +9,14 @@
             "type": "string"
         },
         {
+            "name": "specialization",
+            "type": "select",
+            "options": {
+                "1": "Internists",
+                "2": "Medical Geneticists"
+            }
+        },
+        {
             "name": "residential_address",
             "type": "text"
         },
@@ -49,16 +57,16 @@
             "type": "string"
         },
         {
+            "name": "professional_statement",
+            "type": "json"
+        },
+        {
             "name": "education_qualiication",
-            "type": "text"
+            "type": "json"
         },
         {
             "name": "experience_after_graduation",
-            "type": "text"
-        },
-        {
-            "name": "position",
-            "type": "string"
+            "type": "json"
         },
         {
             "name": "registration_number",
@@ -81,6 +89,12 @@
             "references": "id",
             "on": "users",
             "onDelete": "cascade"
+        },
+        {
+            "column": "specialization",
+            "references": "id",
+            "on": "doctor_specializations",
+            "onDelete": "cascade"
         }
     ],
     "relationships": [
@@ -88,6 +102,11 @@
             "name": "user",
             "type": "belongsTo",
             "class": "App\\Models\\User"
+        },
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\Models\\DoctorSpecialization"
         }
     ],
     "validations": [

@@ -25,11 +25,15 @@ class Doctor extends Model
      *
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'residential_address', 'institute_address', 'email', 'mobile', 'date_of_birth', 'gender', 'marital_status', 'nationality', 'education_qualiication', 'experience_after_graduation', 'position', 'registration_number', 'user_id'];
+    protected $fillable = ['first_name', 'last_name', 'specialization', 'residential_address', 'institute_address', 'email', 'mobile', 'date_of_birth', 'gender', 'marital_status', 'nationality', 'professional_statement', 'education_qualiication', 'experience_after_graduation', 'registration_number', 'user_id'];
 
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\Models\DoctorSpecialization');
     }
     
 }

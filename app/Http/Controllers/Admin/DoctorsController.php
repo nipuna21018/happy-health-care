@@ -23,6 +23,7 @@ class DoctorsController extends Controller
         if (!empty($keyword)) {
             $doctors = Doctor::where('first_name', 'LIKE', "%$keyword%")
                 ->orWhere('last_name', 'LIKE', "%$keyword%")
+                ->orWhere('specialization', 'LIKE', "%$keyword%")
                 ->orWhere('residential_address', 'LIKE', "%$keyword%")
                 ->orWhere('institute_address', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
@@ -31,9 +32,9 @@ class DoctorsController extends Controller
                 ->orWhere('gender', 'LIKE', "%$keyword%")
                 ->orWhere('marital_status', 'LIKE', "%$keyword%")
                 ->orWhere('nationality', 'LIKE', "%$keyword%")
+                ->orWhere('professional_statement', 'LIKE', "%$keyword%")
                 ->orWhere('education_qualiication', 'LIKE', "%$keyword%")
                 ->orWhere('experience_after_graduation', 'LIKE', "%$keyword%")
-                ->orWhere('position', 'LIKE', "%$keyword%")
                 ->orWhere('registration_number', 'LIKE', "%$keyword%")
                 ->orWhere('user_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);

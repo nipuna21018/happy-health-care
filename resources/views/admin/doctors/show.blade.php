@@ -38,7 +38,7 @@
                         <tr>
                             <th>ID</th><td>{{ $doctor->id }}</td>
                         </tr>
-                        <tr><th> First Name </th><td> {{ $doctor->first_name }} </td></tr><tr><th> Last Name </th><td> {{ $doctor->last_name }} </td></tr><tr><th> Residential Address </th><td> {{ $doctor->residential_address }} </td></tr>
+                        <tr><th> First Name </th><td> {{ $doctor->first_name }} </td></tr><tr><th> Last Name </th><td> {{ $doctor->last_name }} </td></tr><tr><th> Specialization </th><td> {{ $doctor->specialization }} </td></tr>
                     </tbody>
                 </table>
             </div>

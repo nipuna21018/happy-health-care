@@ -36,14 +36,14 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th><th>First Name</th><th>Last Name</th><th>Residential Address</th><th>Actions</th>
+                            <th>#</th><th>First Name</th><th>Last Name</th><th>Specialization</th><th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($doctors as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{ $item->residential_address }}</td>
+                            <td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{ $item->specialization }}</td>
                             <td>
                                 <a href="{{ url('/admin/doctors/' . $item->id) }}" title="View Doctor"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                 <a href="{{ url('/admin/doctors/' . $item->id . '/edit') }}" title="Edit Doctor"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

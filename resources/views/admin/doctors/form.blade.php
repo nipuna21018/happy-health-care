@@ -13,6 +13,15 @@
     <input class="form-control" name="last_name" type="text" id="last_name" value="{{ isset($doctor->last_name) ? $doctor->last_name : old('last_name') }}" >
     {!! $errors->first('last_name', '<p class="help-block text-danger">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('specialization') ? 'has-error' : ''}}">
+    <label for="specialization" class="control-label {{ $errors->has('specialization') ? 'text-danger' : ''}}">{{ 'Specialization' }}</label>
+    <select name="specialization" class="form-control" id="specialization" >
+    @foreach (json_decode('{"1":"Internists","2":"Medical Geneticists"}', true) as $optionKey => $optionValue)
+        <option value="{{ $optionKey }}" {{ (isset($doctor->specialization) && $doctor->specialization == $optionKey) || (old('specialization') == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
+    @endforeach
+</select>
+    {!! $errors->first('specialization', '<p class="help-block text-danger">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('residential_address') ? 'has-error' : ''}}">
     <label for="residential_address" class="control-label {{ $errors->has('residential_address') ? 'text-danger' : ''}}">{{ 'Residential Address' }}</label>
     <textarea class="form-control" rows="5" name="residential_address" type="textarea" id="residential_address" >{{ isset($doctor->residential_address) ? $doctor->residential_address : old('residential_address')}}</textarea>
@@ -61,6 +70,11 @@
     <input class="form-control" name="nationality" type="text" id="nationality" value="{{ isset($doctor->nationality) ? $doctor->nationality : old('nationality') }}" >
     {!! $errors->first('nationality', '<p class="help-block text-danger">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('professional_statement') ? 'has-error' : ''}}">
+    <label for="professional_statement" class="control-label {{ $errors->has('professional_statement') ? 'text-danger' : ''}}">{{ 'Professional Statement' }}</label>
+    <textarea class="form-control" rows="5" name="professional_statement" type="textarea" id="professional_statement" >{{ isset($doctor->professional_statement) ? $doctor->professional_statement : old('professional_statement')}}</textarea>
+    {!! $errors->first('professional_statement', '<p class="help-block text-danger">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('education_qualiication') ? 'has-error' : ''}}">
     <label for="education_qualiication" class="control-label {{ $errors->has('education_qualiication') ? 'text-danger' : ''}}">{{ 'Education Qualiication' }}</label>
     <textarea class="form-control" rows="5" name="education_qualiication" type="textarea" id="education_qualiication" >{{ isset($doctor->education_qualiication) ? $doctor->education_qualiication : old('education_qualiication')}}</textarea>
@@ -70,11 +84,6 @@
     <label for="experience_after_graduation" class="control-label {{ $errors->has('experience_after_graduation') ? 'text-danger' : ''}}">{{ 'Experience After Graduation' }}</label>
     <textarea class="form-control" rows="5" name="experience_after_graduation" type="textarea" id="experience_after_graduation" >{{ isset($doctor->experience_after_graduation) ? $doctor->experience_after_graduation : old('experience_after_graduation')}}</textarea>
     {!! $errors->first('experience_after_graduation', '<p class="help-block text-danger">:message</p>') !!}
-</div>
-<div class="form-group {{ $errors->has('position') ? 'has-error' : ''}}">
-    <label for="position" class="control-label {{ $errors->has('position') ? 'text-danger' : ''}}">{{ 'Position' }}</label>
-    <input class="form-control" name="position" type="text" id="position" value="{{ isset($doctor->position) ? $doctor->position : old('position') }}" >
-    {!! $errors->first('position', '<p class="help-block text-danger">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('registration_number') ? 'has-error' : ''}}">
     <label for="registration_number" class="control-label {{ $errors->has('registration_number') ? 'text-danger' : ''}}">{{ 'Registration Number' }}</label>
