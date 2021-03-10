@@ -2,12 +2,18 @@
 
 @section('content')
     
-    <div class="card">
-        <div class="card-header">Edit Doctor #{{ $doctor->id }}</div>
-        <div class="card-body">
-            <a href="{{ url('/admin/doctors') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-            <br />
-            <br />
+   
+    <!-- Breadcrumbs-->
+     <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/doctors') }}">Doctors</a>
+        </li>
+        <li class="breadcrumb-item active">Update #{{ $doctor->id }}</li>
+    </ol>
+        
 
             @if ($errors->any())
                 <ul class="alert alert-danger">
@@ -21,11 +27,11 @@
                 {{ method_field('PATCH') }}
                 {{ csrf_field() }}
 
-                @include ('admin.doctors.form', ['formMode' => 'edit'])
+                @include ('admin.doctors.form', ['formMode' => 'edit', 'title' => 'Update #' . $doctor->id])
 
             </form>
 
-        </div>
-    </div>
+     
+   
        
 @endsection

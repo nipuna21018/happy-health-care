@@ -30,6 +30,13 @@ Route::get('/search-doctors', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
 Route::resource('admin/pharmacies', 'Admin\PharmaciesController');
 Route::resource('admin/patients', 'Admin\PatientsController');
+Route::resource('admin/doctors', 'Admin\DoctorsController');
+
+Route::resource('admin/doctors', 'Admin\DoctorsController');
+Route::resource('admin/doctors', 'Admin\DoctorsController');

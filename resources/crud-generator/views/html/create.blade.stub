@@ -2,12 +2,19 @@
 
 @section('content')
      
-<div class="card">
-    <div class="card-header"><h5 class="mb-0">Create New %%modelName%%</h5></div>
-    <div class="card-body">
-        <a href="{{ url('/%%routeGroup%%%%viewName%%') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-        <br />
-        <br />
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/%%routeGroup%%') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ url('/%%routeGroup%%%%viewName%%') }}">%%crudNameCap%%</a>
+        </li>
+        <li class="breadcrumb-item active">Add %%modelName%%</li>
+    </ol>
+    
+        
 
         @if ($errors->any())
             <ul class="alert alert-danger">
@@ -20,11 +27,11 @@
         <form method="POST" action="{{ url('/%%routeGroup%%%%viewName%%') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            @include ('%%viewTemplateDir%%.form', ['formMode' => 'create'])
+            @include ('%%viewTemplateDir%%.form', ['formMode' => 'create','title' =>'Create %%modelName%%'])
 
         </form>
 
-    </div>
-</div>
+   
+
         
 @endsection

@@ -25,15 +25,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 
 	<!-- Bootstrap core CSS-->
-	<link href="{{ asset('admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin-template/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Icon fonts-->
-	<link href="{{ asset('admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('admin-template/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 	<!-- Plugin styles -->
-	<link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin-template/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 	<!-- Main styles -->
-	<link href="{{ asset('admin/css/admin.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin-template/css/admin.css') }}" rel="stylesheet">
 	<!-- Your custom styles -->
-	<link href="{{ asset('admin/css/admin.css') }}" rel="stylesheet">
+	<link href="{{ asset('admin-template/css/admin.css') }}" rel="stylesheet">
 	@yield('styles')
 
 
@@ -53,6 +53,12 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+					<a class="nav-link" href="{{route('dashboard')}}">
+						<i class="fa fa-fw fa-dashboard"></i>
+						<span class="nav-link-text">Dashboard</span>
+					</a>
+				</li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
 					<a class="nav-link" href="{{route('doctors.index')}}">
 						<i class="fa fa-fw fa-dashboard"></i>
@@ -191,13 +197,6 @@
 
 	<div class="content-wrapper">
 		<div class="container-fluid">
-			<!-- Breadcrumbs-->
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="#">Dashboard</a>
-				</li>
-				<li class="breadcrumb-item active">Add listing</li>
-			</ol>
 			@yield('content')
 		</div>
 		<!-- /.container-fluid-->
@@ -235,18 +234,18 @@
 		</div>
 	</div>
 	<!-- Bootstrap core JavaScript-->
-	<script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script>
-	<script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/jquery/jquery.min.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 	<!-- Core plugin JavaScript-->
-	<script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 	<!-- Page level plugin JavaScript-->
-	<script src="{{ asset('admin/vendor/datatables/jquery.dataTables.js') }}"></script>
-	<script src="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
-	<script src="{{ asset('admin/vendor/jquery.selectbox-0.2.js') }}"></script>
-	<script src="{{ asset('admin/vendor/retina-replace.min.js') }}"></script>
-	<script src="{{ asset('admin/vendor/jquery.magnific-popup.min.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/datatables/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/jquery.selectbox-0.2.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/retina-replace.min.js') }}"></script>
+	<script src="{{ asset('admin-template/vendor/jquery.magnific-popup.min.js') }}"></script>
 	<!-- Custom scripts for all pages-->
-	<script src="{{ asset('admin/js/admin.js') }}"></script>
+	<script src="{{ asset('admin-template/js/admin.js') }}"></script>
 	
 
 	<!-- SPECIFIC SCRIPTS -->

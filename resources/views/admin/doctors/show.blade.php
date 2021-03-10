@@ -2,9 +2,24 @@
 
 @section('content')
     
-    <div class="card">
-        <div class="card-header">Doctor {{ $doctor->id }}</div>
-        <div class="card-body">
+    <!-- Breadcrumbs-->
+     <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/doctors') }}">Doctors</a>
+        </li>
+        <li class="breadcrumb-item active">#{{ $doctor->id }}</li>
+    </ol>
+
+
+    <div class="box_general padding_bottom">
+        <div class="header_box version_2">
+            <h2><i class="fa fa-eye"></i>Doctor #{{ $doctor->id }}</h2>
+        </div>
+   
+        <div>
 
             <a href="{{ url('/admin/doctors') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
             <a href="{{ url('/admin/doctors/' . $doctor->id . '/edit') }}" title="Edit Doctor"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -23,7 +38,7 @@
                         <tr>
                             <th>ID</th><td>{{ $doctor->id }}</td>
                         </tr>
-                        <tr><th> Name </th><td> {{ $doctor->name }} </td></tr><tr><th> Residential Address </th><td> {{ $doctor->residential_address }} </td></tr><tr><th> Institute Address </th><td> {{ $doctor->institute_address }} </td></tr>
+                        <tr><th> First Name </th><td> {{ $doctor->first_name }} </td></tr><tr><th> Last Name </th><td> {{ $doctor->last_name }} </td></tr><tr><th> Residential Address </th><td> {{ $doctor->residential_address }} </td></tr>
                     </tbody>
                 </table>
             </div>

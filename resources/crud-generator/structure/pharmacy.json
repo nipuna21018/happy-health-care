@@ -75,15 +75,15 @@
         },
         {
             "field": "contact_number",
-            "rules": "required|numeric|size:10"
+            "rules": "required|digits:10"
         },
         {
             "field": "pharmacy_phone",
-            "rules": "required|numeric|size:10"
+            "rules": "required|digits:10"
         },
         {
             "field": "fax_number",
-            "rules": "numeric|size:10"
+            "rules": "numeric|digits:10"
         }
     ]
 }

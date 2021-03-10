@@ -21,7 +21,8 @@ class DoctorsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $doctors = Doctor::where('name', 'LIKE', "%$keyword%")
+            $doctors = Doctor::where('first_name', 'LIKE', "%$keyword%")
+                ->orWhere('last_name', 'LIKE', "%$keyword%")
                 ->orWhere('residential_address', 'LIKE', "%$keyword%")
                 ->orWhere('institute_address', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
@@ -63,7 +64,9 @@ class DoctorsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'name' => 'required|max:50'
+			'first_name' => 'required|max:50',
+			'email' => 'required|email|max:50',
+			'mobile' => 'required|digits:10'
 		]);
         $requestData = $request->all();
         
@@ -111,7 +114,9 @@ class DoctorsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'name' => 'required|max:50'
+			'first_name' => 'required|max:50',
+			'email' => 'required|email|max:50',
+			'mobile' => 'required|digits:10'
 		]);
         $requestData = $request->all();
         

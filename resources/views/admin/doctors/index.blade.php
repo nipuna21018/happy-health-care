@@ -2,9 +2,19 @@
 
 @section('content')
    
-    <div class="card">
-        <div class="card-header">Doctors</div>
-        <div class="card-body">
+   <!-- Breadcrumbs-->
+     <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Doctors</li>
+    </ol>
+
+    <div class="box_general padding_bottom">
+        <div class="header_box version_2">
+            <h2><i class="fa fa-list"></i>Doctors</h2>
+        </div>
+        <div >
             <a href="{{ url('/admin/doctors/create') }}" class="btn btn-success btn-sm" title="Add New Doctor">
                 <i class="fa fa-plus" aria-hidden="true"></i> Add New
             </a>
@@ -26,14 +36,14 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th><th>Name</th><th>Residential Address</th><th>Institute Address</th><th>Actions</th>
+                            <th>#</th><th>First Name</th><th>Last Name</th><th>Residential Address</th><th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($doctors as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->name }}</td><td>{{ $item->residential_address }}</td><td>{{ $item->institute_address }}</td>
+                            <td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{ $item->residential_address }}</td>
                             <td>
                                 <a href="{{ url('/admin/doctors/' . $item->id) }}" title="View Doctor"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                 <a href="{{ url('/admin/doctors/' . $item->id . '/edit') }}" title="Edit Doctor"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

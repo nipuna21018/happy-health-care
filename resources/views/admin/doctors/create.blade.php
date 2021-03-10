@@ -2,12 +2,19 @@
 
 @section('content')
      
-<div class="card">
-    <div class="card-header">Create New Doctor</div>
-    <div class="card-body">
-        <a href="{{ url('/admin/doctors') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-        <br />
-        <br />
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/doctors') }}">Doctors</a>
+        </li>
+        <li class="breadcrumb-item active">Add Doctor</li>
+    </ol>
+    
+        
 
         @if ($errors->any())
             <ul class="alert alert-danger">
@@ -20,11 +27,11 @@
         <form method="POST" action="{{ url('/admin/doctors') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            @include ('admin.doctors.form', ['formMode' => 'create'])
+            @include ('admin.doctors.form', ['formMode' => 'create','title' =>'Create Doctor'])
 
         </form>
 
-    </div>
-</div>
+   
+
         
 @endsection
