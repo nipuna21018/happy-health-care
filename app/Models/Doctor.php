@@ -31,7 +31,8 @@ class Doctor extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-    public function user()
+    
+    public function doctorSpecialization()
     {
         return $this->belongsTo('App\Models\DoctorSpecialization');
     }
