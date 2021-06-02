@@ -1,11 +1,11 @@
 <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
     <label for="first_name" class="control-label">{{ 'First Name' }}</label>
-    <input class="form-control" name="first_name" type="text" id="first_name" value="{{ isset($patient->first_name) ? $patient->first_name : ''}}" required>
+    <input class="form-control" name="first_name" type="text" id="first_name" value="{{ isset($patient->first_name) ? $patient->first_name : ''}}"  >
     {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
     <label for="last_name" class="control-label">{{ 'Last Name' }}</label>
-    <input class="form-control" name="last_name" type="text" id="last_name" value="{{ isset($patient->last_name) ? $patient->last_name : ''}}" required>
+    <input class="form-control" name="last_name" type="text" id="last_name" value="{{ isset($patient->last_name) ? $patient->last_name : ''}}"  >
     {!! $errors->first('last_name', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('address') ? 'has-error' : ''}}">
@@ -20,27 +20,27 @@
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
     <label for="email" class="control-label">{{ 'Email' }}</label>
-    <input class="form-control" name="email" type="text" id="email" value="{{ isset($patient->email) ? $patient->email : ''}}" required>
+    <input class="form-control" name="email" type="text" id="email" value="{{ isset($patient->email) ? $patient->email : ''}}"  >
     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('contact_number') ? 'has-error' : ''}}">
     <label for="contact_number" class="control-label">{{ 'Contact Number' }}</label>
-    <input class="form-control" name="contact_number" type="text" id="contact_number" value="{{ isset($patient->contact_number) ? $patient->contact_number : ''}}" required>
+    <input class="form-control" name="contact_number" type="text" id="contact_number" value="{{ isset($patient->contact_number) ? $patient->contact_number : ''}}"  >
     {!! $errors->first('contact_number', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('date_of_birth') ? 'has-error' : ''}}">
     <label for="date_of_birth" class="control-label">{{ 'Date Of Birth' }}</label>
-    <input class="form-control" name="date_of_birth" type="date" id="date_of_birth" value="{{ isset($patient->date_of_birth) ? $patient->date_of_birth : ''}}" required>
+    <input class="form-control" name="date_of_birth" type="date" id="date_of_birth" value="{{ isset($patient->date_of_birth) ? $patient->date_of_birth : ''}}"  >
     {!! $errors->first('date_of_birth', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('weight') ? 'has-error' : ''}}">
     <label for="weight" class="control-label">{{ 'Weight' }}</label>
-    <input class="form-control" name="weight" type="number" id="weight" value="{{ isset($patient->weight) ? $patient->weight : ''}}" required>
+    <input class="form-control" name="weight" type="number" id="weight" value="{{ isset($patient->weight) ? $patient->weight : ''}}"  >
     {!! $errors->first('weight', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('height') ? 'has-error' : ''}}">
     <label for="height" class="control-label">{{ 'Height' }}</label>
-    <input class="form-control" name="height" type="number" id="height" value="{{ isset($patient->height) ? $patient->height : ''}}" required>
+    <input class="form-control" name="height" type="number" id="height" value="{{ isset($patient->height) ? $patient->height : ''}}"  >
     {!! $errors->first('height', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('emergency_contact_name') ? 'has-error' : ''}}">

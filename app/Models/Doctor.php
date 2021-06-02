@@ -34,7 +34,7 @@ class Doctor extends Model
     
     public function doctorSpecialization()
     {
-        return $this->belongsTo('App\Models\DoctorSpecialization');
+        return $this->belongsTo('App\Models\DoctorSpecialization','specialization', 'id');
     }
     
 }

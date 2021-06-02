@@ -43,7 +43,9 @@
                     @foreach($doctors as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{ $item->specialization }}</td>
+                            <td>{{ $item->first_name }}</td>
+                            <td>{{ $item->last_name }}</td>
+                            <td>{{ $item->doctorSpecialization->name }}</td>
                             <td>
                                 <a href="{{ url('/admin/doctors/' . $item->id) }}" title="View Doctor"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                 <a href="{{ url('/admin/doctors/' . $item->id . '/edit') }}" title="Edit Doctor"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
