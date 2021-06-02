@@ -36,9 +36,17 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <th>ID</th><td>{{ $prescription->id }}</td>
+                            <th style="width: 250px;">ID</th><td>{{ $prescription->id }}</td>
                         </tr>
-                        <tr><th> Patient Id </th><td> {{ $prescription->patient_id }} </td></tr><tr><th> Doctor Id </th><td> {{ $prescription->doctor_id }} </td></tr><tr><th> Pharmacy Id </th><td> {{ $prescription->pharmacy_id }} </td></tr>
+                        <tr><th> Patient Name </th><td> {{ $prescription->patient->first_name }} {{ $prescription->patient->last_name}}</td></tr>
+                        <tr><th> Doctor Name </th><td> {{$prescription->doctor->first_name }} {{ $prescription->doctor->last_name}} </td></tr>
+                        <tr><th> Doctor Mobile </th><td> {{$prescription->doctor->mobile }} </td></tr>
+                        <tr><th> Doctor Address </th><td> {{$prescription->doctor->institute_address }} </td></tr>
+                        <tr><th> Pharmacy Name </th><td> {{$prescription->pharmacy->pharmacy_name ?? "N/A" }}</td></tr>
+                        <tr><th> Pharmacy Mobile </th><td> {{$prescription->pharmacy->pharmacy_phone  ?? "N/A" }} </td></tr>
+                        <tr><th> Pharmacy Address </th><td> {{$prescription->pharmacy->pharmacy_address  ?? "N/A" }} </td></tr>
+                        <tr><th> Pharmacy Owner </th><td> {{$prescription->pharmacy->first_name  ?? "N/A" }} {{$prescription->pharmacy->last_name  ?? "" }}</td></tr>
+                        <tr><th> Pharmacy Owner Contact </th><td> {{$prescription->pharmacy->contact_number  ?? "N/A" }} </td></tr>
                     </tbody>
                 </table>
             </div>
