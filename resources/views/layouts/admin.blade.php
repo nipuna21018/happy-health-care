@@ -27,7 +27,8 @@
 	<!-- Bootstrap core CSS-->
 	<link href="{{ asset('admin-template/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 	<!-- Icon fonts-->
-	<link href="{{ asset('admin-template/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('admin-template/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet"
+		type="text/css">
 	<!-- Plugin styles -->
 	<link href="{{ asset('admin-template/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 	<!-- Main styles -->
@@ -44,48 +45,17 @@
 
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-		<a class="navbar-brand" href="index.html"><img src="{{asset('admin-template/img/logo.png')}}" data-retina="true" alt="" width="163"
-				height="36"></a>
+		<a class="navbar-brand" href="index.html"><img src="{{asset('admin-template/img/logo.png')}}" data-retina="true"
+				alt="" width="163" height="36"></a>
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
 			data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
 			aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="{{route('dashboard')}}">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Dashboard</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="{{route('doctors.index')}}">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Doctors</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="{{route('pharmacies.index')}}">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Pharmacies</span>
-					</a>
-				</li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="{{route('patients.index')}}">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Patients</span>
-					</a>
-				</li>
-				
-				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-					<a class="nav-link" href="{{route('doctor-specializations.index')}}">
-						<i class="fa fa-fw fa-dashboard"></i>
-						<span class="nav-link-text">Doctor Specializations</span>
-					</a>
-				</li>
-				
-			</ul>
+
+			@component('admin.sidebar')@endcomponent
+
 			<ul class="navbar-nav sidenav-toggler">
 				<li class="nav-item">
 					<a class="nav-link text-center" id="sidenavToggler">
@@ -253,7 +223,7 @@
 	<script src="{{ asset('admin-template/vendor/jquery.magnific-popup.min.js') }}"></script>
 	<!-- Custom scripts for all pages-->
 	<script src="{{ asset('admin-template/js/admin.js') }}"></script>
-	
+
 
 	<!-- SPECIFIC SCRIPTS -->
 	@yield('scripts')
