@@ -18,10 +18,11 @@
         <a href="{{ url('/admin/prescriptions/create') }}" class="btn btn-success btn-sm" title="Add New Prescription">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
-
-        <form method="GET" action="{{ url('/admin/prescriptions') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+        <form method="GET" action="{{ url('/admin/prescriptions') }}" accept-charset="UTF-8"
+            class="form-inline my-2 my-lg-0 float-right" role="search">
             <div class="input-group">
-                <input class="form-control search-top" type="text" name="search" placeholder="Search..." value="{{ request('search') }}">
+                <input class="form-control search-top" type="text" name="search" placeholder="Search..."
+                    value="{{ request('search') }}">
                 <span class="input-group-btn">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
@@ -51,20 +52,28 @@
                         <td>{{ $item->doctor->first_name }}</td>
                         <td>{{ $item->pharmacy->pharmacy_name ?? ""  }}</td>
                         <td>
-                            <a href="{{ url('/admin/prescriptions/' . $item->id) }}" title="View Prescription"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                            <a href="{{ url('/admin/prescriptions/' . $item->id . '/edit') }}" title="Edit Prescription"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                            <a href="{{ url('/admin/prescriptions/' . $item->id) }}" title="View Prescription"><button
+                                    class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>
+                                    View</button></a>
+                            <a href="{{ url('/admin/prescriptions/' . $item->id . '/edit') }}"
+                                title="Edit Prescription"><button class="btn btn-primary btn-sm"><i
+                                        class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
-                            <form method="POST" action="{{ url('/admin/prescriptions' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                            <form method="POST" action="{{ url('/admin/prescriptions' . '/' . $item->id) }}"
+                                accept-charset="UTF-8" style="display:inline">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Prescription" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Prescription"
+                                    onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o"
+                                        aria-hidden="true"></i> Delete</button>
                             </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div class="pagination-wrapper"> {!! $prescriptions->appends(['search' => Request::get('search')])->render() !!} </div>
+            <div class="pagination-wrapper"> {!! $prescriptions->appends(['search' => Request::get('search')])->render()
+                !!} </div>
         </div>
 
     </div>
