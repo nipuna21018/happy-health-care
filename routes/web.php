@@ -31,17 +31,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
-Route::resource('admin/pharmacies', 'Admin\PharmaciesController');
-Route::resource('admin/patients', 'Admin\PatientsController');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
 
-Route::resource('admin/doctors', 'Admin\DoctorsController');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
-Route::resource('admin/doctor-specializations', 'Admin\DoctorSpecializationsController');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
-Route::resource('admin/doctors', 'Admin\DoctorsController');
-Route::resource('admin/prescriptions', 'Admin\PrescriptionsController');
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
+    Route::resource('pharmacies', 'Admin\PharmaciesController');
+    Route::resource('patients', 'Admin\PatientsController');
+    Route::resource('doctors', 'Admin\DoctorsController');
+    Route::resource('doctor-specializations', 'Admin\DoctorSpecializationsController');
+    Route::resource('prescriptions', 'Admin\PrescriptionsController');
+});
+
+Route::prefix('doctor')->middleware(['auth', 'role:doctor'])->group(function () {
+    Route::get('/', 'Doctor\DashboardController@index')->name('doctor.dashboard');
+});
+
+Route::prefix('pharmacy')->middleware(['auth', 'role:pharmacist'])->group(function () {
+    Route::get('/', 'Pharmacy\DashboardController@index')->name('pharmacy.dashboard');
+});

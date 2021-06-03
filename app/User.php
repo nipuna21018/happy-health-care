@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const USER_TYPE_ADMIN = "admin";
+    const USER_TYPE_DOCTOR = "doctor";
+    const USER_TYPE_PHARMACIST = "pharmacist";
+    const USER_TYPE_PATIENT = "patient";
+
     /**
      * The attributes that are mass assignable.
      *
