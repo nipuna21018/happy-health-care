@@ -43,6 +43,12 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
 Route::prefix('doctor')->middleware(['auth', 'role:doctor'])->group(function () {
     Route::get('/', 'Doctor\DashboardController@index')->name('doctor.dashboard');
+    Route::get('/inquiries', 'Doctor\InquiryController@index')->name('doctor.inquiries.index');
+    Route::get('/inquiries/prescribed', 'Doctor\InquiryController@prescribed')->name('doctor.inquiries.prescribed');
+    Route::get('/inquiry/{id}', 'Doctor\InquiryController@show')->name('doctor.inquiries.show');
+    Route::patch('/inquiry/{id}', 'Doctor\InquiryController@update')->name('doctor.inquiries.show');
+    Route::get('/inquiry/{id}/edit', 'Doctor\InquiryController@edit')->name('doctor.inquiries.edit');
+    Route::get('/patients/{id}', 'Doctor\PatientsController@show')->name('doctor.patients.show');
 });
 
 Route::prefix('pharmacy')->middleware(['auth', 'role:pharmacist'])->group(function () {

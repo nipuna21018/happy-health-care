@@ -6,15 +6,15 @@
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="{{route('doctors.index')}}">
+        <a class="nav-link" href="{{route('doctor.inquiries.index')}}">
             <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Inquiries</span>
+            <span class="nav-link-text">Open Inquiries</span>
         </a>
     </li>
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href="{{route('patients.index')}}">
+        <a class="nav-link" href="{{route('doctor.inquiries.prescribed')}}">
             <i class="fa fa-fw fa-dashboard"></i>
-            <span class="nav-link-text">Patients</span>
+            <span class="nav-link-text">Prescribed Inquiries</span>
         </a>
     </li>
 
