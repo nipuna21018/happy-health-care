@@ -73,7 +73,8 @@ class DoctorsController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:50',
             'email' => 'required|email|max:50',
-            'mobile' => 'required|digits:10'
+            'mobile' => 'required|digits:10',
+            'registration_number' => 'required',
         ]);
         $requestData = $request->all();
 
@@ -82,6 +83,7 @@ class DoctorsController extends Controller
             'name' => $request->first_name,
             'email' => $request->email,
             'password' => Hash::make('12345678'),
+            'user_type' => User::USER_TYPE_DOCTOR
         ]);
 
         //@todo

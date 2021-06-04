@@ -9,7 +9,7 @@
                 <label for="first_name"
                     class="control-label {{ $errors->has('first_name') ? 'text-danger' : ''}}">{{ 'First Name' }}</label>
                 <input class="form-control" name="first_name" type="text" id="first_name"
-                    value="{{ isset($doctor->first_name) ? $doctor->first_name : old('first_name') }}" required>
+                    value="{{ isset($doctor->first_name) ? $doctor->first_name : old('first_name') }}">
                 {!! $errors->first('first_name', '<p class="help-block text-danger">:message</p>') !!}
             </div>
         </div>
@@ -142,7 +142,7 @@
                 <label for="mobile"
                     class="control-label {{ $errors->has('mobile') ? 'text-danger' : ''}}">{{ 'Mobile' }}</label>
                 <input class="form-control" name="mobile" type="text" id="mobile"
-                    value="{{ isset($doctor->mobile) ? $doctor->mobile : old('mobile') }}" required>
+                    value="{{ isset($doctor->mobile) ? $doctor->mobile : old('mobile') }}">
                 {!! $errors->first('mobile', '<p class="help-block text-danger">:message</p>') !!}
             </div>
         </div>
@@ -151,7 +151,7 @@
                 <label for="email"
                     class="control-label {{ $errors->has('email') ? 'text-danger' : ''}}">{{ 'Email' }}</label>
                 <input class="form-control" name="email" type="text" id="email"
-                    value="{{ isset($doctor->email) ? $doctor->email : old('email') }}" required>
+                    value="{{ isset($doctor->email) ? $doctor->email : old('email') }}">
                 {!! $errors->first('email', '<p class="help-block text-danger">:message</p>') !!}
             </div>
         </div>
@@ -177,8 +177,7 @@
             class="control-label {{ $errors->has('sub-specializations') ? 'text-danger' : ''}}">{{ 'Other Specializations' }}</label>
         <input class="form-control" name="sub-specializations" type="text" id="sub-specializations"
             placeholder="Ex: Abdominal radiology, Breast imaging, Cardiothoracic radiology ..."
-            value="{{ isset($doctor->subspecializations) ? $doctor->subspecializations : old('sub-specializations') }}"
-            required>
+            value="{{ isset($doctor->subspecializations) ? $doctor->subspecializations : old('sub-specializations') }}">
         {!! $errors->first('sub-specializations', '<p class="help-block text-danger">:message</p>') !!}
     </div>
 
