@@ -18,16 +18,17 @@ class InquiryController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        $patient = Patient::where('user_id', $user->id)->first();
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('patient_id', '=', $patient->id)
                 //->where('status', '=', 'pending')
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('patient_id', '=', $patient->id)
                 //->where('status', '=', 'pending')
                 ->latest()->paginate($perPage);
         }
