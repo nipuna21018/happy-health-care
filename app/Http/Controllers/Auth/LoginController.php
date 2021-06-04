@@ -47,6 +47,6 @@ class LoginController extends Controller
         } else if ($user->user_type == "pharmacist") {
             return redirect()->route('pharmacy.dashboard');
         }
-        return redirect('/patient/inquiries');
+        return redirect()->route('patient.inquiries.index');
     }
 }

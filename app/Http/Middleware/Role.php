@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Patient;
+use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +26,24 @@ class Role
         $user = Auth::user();
         foreach ($roles as $role) {
             // Check if user has the role
-            if ($user->user_type == $role)
-                return $next($request);
+            if ($user->user_type == $role) {
+                $profilePath = 'patient/profile';
+                if ($role == User::USER_TYPE_PATIENT) {
+
+                    if ($request->route()->uri == $profilePath) {
+                        return $next($request);
+                    }
+
+                    $patient = Patient::where("user_id", $user->id)->first();
+                    if (!$patient) {
+                        return redirect($profilePath);
+                    } else {
+                        return $next($request);
+                    }
+                } else {
+                    return $next($request);
+                }
+            }
         }
 
         return redirect('login');

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('patient.profile.create');
+        $patient = Patient::where("user_id", Auth::id())->first();
+        return view('patient.profile.create', compact('patient'));
     }
 
     /**
@@ -30,6 +32,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
         $this->validate($request, [
             'first_name' => 'required|max:20',
             'last_name' => 'max:20',
@@ -41,7 +44,13 @@ class ProfileController extends Controller
         ]);
         $requestData = $request->all();
 
-        Patient::create($requestData);
+        $patient = Patient::where("user_id", $user_id)->first();
+        if (!$patient) {
+            $requestData['user_id'] = $user_id;
+            Patient::create($requestData);
+        } else {
+            $patient->update($requestData);
+        }
 
         return redirect('patient/profile')->with('flash_message', 'Profile Created!');
     }

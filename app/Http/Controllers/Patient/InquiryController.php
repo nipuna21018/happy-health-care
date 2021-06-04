@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Models\Pharmacy;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
@@ -30,6 +31,8 @@ class InquiryController extends Controller
                 ->where('status', '=', 'pending')
                 ->latest()->paginate($perPage);
         }
+
+
         return view('patient/inquiries.index', compact('prescriptions'));
     }
 
@@ -54,7 +57,8 @@ class InquiryController extends Controller
                 ->where('status', '!=', 'pending')
                 ->latest()->paginate($perPage);
         }
-        return view('doctor/inquiries.prescribed', compact('prescriptions'));
+        $patient = Patient::where("user_id", $user->id)->first();
+        return view('doctor/inquiries.prescribed', compact('prescriptions', 'patient'));
     }
 
     /**

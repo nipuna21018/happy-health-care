@@ -14,10 +14,10 @@ class Patient extends Model
     protected $table = 'patients';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,5 @@ class Patient extends Model
      *
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'address', 'nic', 'email', 'contact_number', 'date_of_birth', 'weight', 'height', 'emergency_contact_name', 'emergency_contact_no', 'emergency_address', 'chicken_pox', 'measles', 'hepatitis_b', 'medical_problems', 'has_insurance', 'insuared_company', 'insuared_company_address', 'policy_number', 'expiary_date', 'allergies', 'regular_medications'];
-
-    
+    protected $fillable = ['first_name', 'last_name', 'address', 'nic', 'email', 'contact_number', 'date_of_birth', 'weight', 'height', 'emergency_contact_name', 'emergency_contact_no', 'emergency_address', 'chicken_pox', 'measles', 'hepatitis_b', 'medical_problems', 'has_insurance', 'insuared_company', 'insuared_company_address', 'policy_number', 'expiary_date', 'allergies', 'regular_medications', 'user_id'];
 }

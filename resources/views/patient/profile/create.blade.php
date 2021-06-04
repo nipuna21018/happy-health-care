@@ -36,57 +36,22 @@
 
 		<div class="col-lg-9" id="faq">
 			<div class="box_general">
-				<h3>Profile</h3>
-				<p>
-					This is your patient profile
-				</p>
+				@if ($patient)
+				<h3>{{$patient->first_name}}'s Profile</h3>
+				<p>All data in this page is visble to doctors. Keep your profile upto date.</p>
+				@else
+				<h3>Complete Your Profile</h3>
+				<p>Your patient profile is incomplete. Complete it before you can send inquiries</p>
+				@endif
+
 				<div>
 					<div id="message-contact"></div>
-					<form method="post" action="assets/contact.php" id="contactform">
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<input type="text" class="form-control" id="name_contact" name="name_contact"
-										placeholder="Name">
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<input type="text" class="form-control" id="lastname_contact"
-										name="lastname_contact" placeholder="Last name">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<input type="email" id="email_contact" name="email_contact" class="form-control"
-										placeholder="Email">
-								</div>
-							</div>
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<input type="text" id="phone_contact" name="phone_contact" class="form-control"
-										placeholder="Phone number">
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="form-group">
-									<textarea rows="5" id="message_contact" name="message_contact" class="form-control"
-										style="height:100px;" placeholder="Hello world!"></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="text" id="verify_contact" class=" form-control" placeholder=" 3 + 1 =">
-								</div>
-							</div>
-						</div>
-						<input type="submit" value="Submit" class="btn_1 add_top_20" id="submit-contact">
+					<form method="POST" action="{{ route('patient.profile.create') }}" accept-charset="UTF-8"
+						class="form-horizontal" enctype="multipart/form-data">
+						{{ csrf_field() }}
+
+						@include ('patient.profile.form', ['formMode' => $patient ? 'edit': 'create'])
+
 					</form>
 				</div>
 				<!-- /col -->

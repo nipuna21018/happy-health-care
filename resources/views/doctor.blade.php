@@ -190,7 +190,7 @@
 					<small>Respond within one hour</small>
 				</div>
 				<div id="message-booking"></div>
-				<form method="post" action="{{route('patient.inquiry.store')}}" id="booking">
+				<form method="post" action="{{route('patient.inquiries.store')}}" id="booking">
 					{{ csrf_field() }}
 					<input type="hidden" value="Dr. Julia Jhones" name="doctor_name_booking" id="doctor_name_booking">
 					<div class="row">
