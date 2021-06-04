@@ -41,7 +41,7 @@
 					<div class="box_list wow fadeIn">
 						<a href="#0" class="wish_bt"></a>
 						<figure>
-							<a href="{{route('doctor-profile','1')}}"><img
+							<a href="{{route('doctor-profile', $doctor->id)}}"><img
 									src="http://www.ansonika.com/findoctor/img/doctor_listing_1.jpg" class="img-fluid"
 									alt="">
 								<div class="preview"><span>Read more</span></div>
@@ -59,7 +59,7 @@
 								{{ucfirst($doctor->gender)}} </li>
 							<li>
 							</li>
-							<li><a href="{{route('doctor-profile','1')}}">Inquiry</a></li>
+							<li><a href="{{route('doctor-profile', $doctor->id)}}">Inquiry</a></li>
 						</ul>
 					</div>
 				</div>
