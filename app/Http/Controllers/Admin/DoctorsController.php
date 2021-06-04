@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Doctor;
+use App\Models\DoctorSpecialization;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -54,7 +55,9 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        return view('admin.doctors.create');
+
+        $doctorSpecializations =  DoctorSpecialization::all();
+        return view('admin.doctors.create', compact('doctorSpecializations'));
     }
 
     /**
@@ -75,7 +78,7 @@ class DoctorsController extends Controller
         $requestData = $request->all();
 
         // we create a associated user account with a random password
-        User::create([
+        $user =  User::create([
             'name' => $request->first_name,
             'email' => $request->email,
             'password' => Hash::make('12345678'),
@@ -84,6 +87,7 @@ class DoctorsController extends Controller
         //@todo
         // need to send the random generated password to the doctor's email
 
+        $requestData['user_id'] = $user->id;
         Doctor::create($requestData);
 
         return redirect('admin/doctors')->with('flash_message', 'Doctor added!');

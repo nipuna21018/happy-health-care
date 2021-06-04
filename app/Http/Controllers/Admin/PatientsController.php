@@ -85,7 +85,7 @@ class PatientsController extends Controller
         $requestData = $request->all();
 
         // we create a associated user account with a random password
-        User::create([
+        $user = User::create([
             'name' => $request->first_name,
             'email' => $request->email,
             'password' => Hash::make('12345678'),
@@ -94,6 +94,7 @@ class PatientsController extends Controller
         //@todo
         // need to send the random generated password to the patients's email
 
+        $requestData['user_id'] = $user->id;
         Patient::create($requestData);
 
         return redirect('admin/patients')->with('flash_message', 'Patient added!');

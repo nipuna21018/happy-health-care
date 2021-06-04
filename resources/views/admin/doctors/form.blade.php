@@ -29,11 +29,10 @@
                 <label for="specialization"
                     class="control-label {{ $errors->has('specialization') ? 'text-danger' : ''}}">{{ 'Specialization' }}</label>
                 <select name="specialization" class="form-control" id="specialization">
-                    @foreach (json_decode('{"1":"Internists","2":"Medical Geneticists"}', true) as $optionKey =>
-                    $optionValue)
-                    <option value="{{ $optionKey }}"
-                        {{ (isset($doctor->specialization) && $doctor->specialization == $optionKey) || (old('specialization') == $optionKey) ? 'selected' : ''}}>
-                        {{ $optionValue }}</option>
+                    @foreach ($doctorSpecializations as $doctorSpecialization)
+                    <option value="{{ $doctorSpecialization->id }}"
+                        {{ (isset($doctor->specialization) && $doctor->specialization == $doctorSpecialization->id) || (old('specialization') == $doctorSpecialization->id) ? 'selected' : ''}}>
+                        {{ $doctorSpecialization->name }}</option>
                     @endforeach
                 </select>
                 {!! $errors->first('specialization', '<p class="help-block text-danger">:message</p>') !!}
@@ -168,15 +167,18 @@
     <div class="form-group {{ $errors->has('professional_statement') ? 'has-error' : ''}}">
         <label for="professional_statement"
             class="control-label {{ $errors->has('professional_statement') ? 'text-danger' : ''}}">{{ 'Professional Statement' }}</label>
-        <textarea class="form-control" rows="5" name="professional_statement" type="textarea" placeholder="Write here your description.... "
+        <textarea class="form-control" rows="5" name="professional_statement" type="textarea"
+            placeholder="Write here your description.... "
             id="professional_statement">{{ isset($doctor->professional_statement) ? $doctor->professional_statement : old('professional_statement')}}</textarea>
         {!! $errors->first('professional_statement', '<p class="help-block text-danger">:message</p>') !!}
     </div>
     <div class="form-group {{ $errors->has('sub-specializations') ? 'has-error' : ''}}">
         <label for="sub-specializations"
             class="control-label {{ $errors->has('sub-specializations') ? 'text-danger' : ''}}">{{ 'Other Specializations' }}</label>
-        <input class="form-control" name="sub-specializations" type="text" id="sub-specializations" placeholder="Ex: Abdominal radiology, Breast imaging, Cardiothoracic radiology ..."
-            value="{{ isset($doctor->subspecializations) ? $doctor->subspecializations : old('sub-specializations') }}" required>
+        <input class="form-control" name="sub-specializations" type="text" id="sub-specializations"
+            placeholder="Ex: Abdominal radiology, Breast imaging, Cardiothoracic radiology ..."
+            value="{{ isset($doctor->subspecializations) ? $doctor->subspecializations : old('sub-specializations') }}"
+            required>
         {!! $errors->first('sub-specializations', '<p class="help-block text-danger">:message</p>') !!}
     </div>
 
@@ -194,16 +196,6 @@
             id="experience_after_graduation">{{ isset($doctor->experience_after_graduation) ? $doctor->experience_after_graduation : old('experience_after_graduation')}}</textarea>
         {!! $errors->first('experience_after_graduation', '<p class="help-block text-danger">:message</p>') !!}
     </div>
-    
-
-    <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-        <label for="user_id"
-            class="control-label {{ $errors->has('user_id') ? 'text-danger' : ''}}">{{ 'User Id' }}</label>
-        <input class="form-control" name="user_id" type="number" id="user_id"
-            value="{{ isset($doctor->user_id) ? $doctor->user_id : old('user_id') }}">
-        {!! $errors->first('user_id', '<p class="help-block text-danger">:message</p>') !!}
-    </div>
-
 
 </div>
 <div class="form-group">
