@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use App\Models\Pharmacy;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
@@ -18,16 +19,17 @@ class InquiryController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        $doctor = Doctor::where('user_id', $user->id)->first();
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('doctor_id', '=', $doctor->id)
                 ->where('status', '=', 'pending')
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('doctor_id', '=', $doctor->id)
                 ->where('status', '=', 'pending')
                 ->latest()->paginate($perPage);
         }
@@ -42,16 +44,17 @@ class InquiryController extends Controller
     public function prescribed(Request $request)
     {
         $user = $request->user();
+        $doctor = Doctor::where('user_id', $user->id)->first();
         $keyword = $request->get('search');
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('doctor_id', '=', $doctor->id)
                 ->where('status', '!=', 'pending')
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
+            $prescriptions = Prescription::where('doctor_id', '=', $doctor->id)
                 ->where('status', '!=', 'pending')
                 ->latest()->paginate($perPage);
         }

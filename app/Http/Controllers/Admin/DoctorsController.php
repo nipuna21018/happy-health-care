@@ -6,6 +6,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Doctor;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class DoctorsController extends Controller
@@ -64,13 +66,24 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
-			'first_name' => 'required|max:50',
-			'email' => 'required|email|max:50',
-			'mobile' => 'required|digits:10'
-		]);
+            'first_name' => 'required|max:50',
+            'email' => 'required|email|max:50',
+            'mobile' => 'required|digits:10'
+        ]);
         $requestData = $request->all();
-        
+
+        // we create a associated user account with a random password
+        User::create([
+            'name' => $request->first_name,
+            'email' => $request->email,
+            'password' => Hash::make('12345678'),
+        ]);
+
+        //@todo
+        // need to send the random generated password to the doctor's email
+
         Doctor::create($requestData);
 
         return redirect('admin/doctors')->with('flash_message', 'Doctor added!');
@@ -115,12 +128,12 @@ class DoctorsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'first_name' => 'required|max:50',
-			'email' => 'required|email|max:50',
-			'mobile' => 'required|digits:10'
-		]);
+            'first_name' => 'required|max:50',
+            'email' => 'required|email|max:50',
+            'mobile' => 'required|digits:10'
+        ]);
         $requestData = $request->all();
-        
+
         $doctor = Doctor::findOrFail($id);
         $doctor->update($requestData);
 

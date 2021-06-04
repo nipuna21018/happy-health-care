@@ -23,12 +23,12 @@ class InquiryController extends Controller
 
         if (!empty($keyword)) {
             $prescriptions = Prescription::where('doctor_id', '=', $user->id)
-                ->where('status', '=', 'pending')
+                //->where('status', '=', 'pending')
                 ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $prescriptions = Prescription::where('doctor_id', '=', $user->id)
-                ->where('status', '=', 'pending')
+                //->where('status', '=', 'pending')
                 ->latest()->paginate($perPage);
         }
 

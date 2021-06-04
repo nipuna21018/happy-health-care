@@ -6,7 +6,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Patient;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PatientsController extends Controller
 {
@@ -72,16 +74,26 @@ class PatientsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'first_name' => 'required|max:20',
-			'last_name' => 'max:20',
-			'email' => 'required|email|max:60',
-			'contact_number' => 'required|digits:10',
-			'date_of_birth' => 'required|date',
-			'weight' => 'required|numeric',
-			'height' => 'required|numeric'
-		]);
+            'first_name' => 'required|max:20',
+            'last_name' => 'max:20',
+            'email' => 'required|email|max:60',
+            'contact_number' => 'required|digits:10',
+            'date_of_birth' => 'required|date',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric'
+        ]);
         $requestData = $request->all();
-        
+
+        // we create a associated user account with a random password
+        User::create([
+            'name' => $request->first_name,
+            'email' => $request->email,
+            'password' => Hash::make('12345678'),
+        ]);
+
+        //@todo
+        // need to send the random generated password to the patients's email
+
         Patient::create($requestData);
 
         return redirect('admin/patients')->with('flash_message', 'Patient added!');
@@ -126,16 +138,16 @@ class PatientsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'first_name' => 'required|max:20',
-			'last_name' => 'max:20',
-			'email' => 'required|email|max:60',
-			'contact_number' => 'required|digits:10',
-			'date_of_birth' => 'required|date',
-			'weight' => 'required|numeric',
-			'height' => 'required|numeric'
-		]);
+            'first_name' => 'required|max:20',
+            'last_name' => 'max:20',
+            'email' => 'required|email|max:60',
+            'contact_number' => 'required|digits:10',
+            'date_of_birth' => 'required|date',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric'
+        ]);
         $requestData = $request->all();
-        
+
         $patient = Patient::findOrFail($id);
         $patient->update($requestData);
 
