@@ -192,19 +192,19 @@
 				<div id="message-booking"></div>
 				<form method="post" action="{{route('patient.inquiries.store')}}" id="booking">
 					{{ csrf_field() }}
-					<input type="hidden" value="{{$patient->id}}" name="patient_id">
-					<input type="hidden" value="{{$doctor->id}}" name="doctor_id">
+					<input type="hidden" value="{{$patient->id ?? ''}}" name="patient_id">
+					<input type="hidden" value="{{$doctor->id ?? ''}}" name="doctor_id">
 					<div class="row">
 						<div class="col-md-6 ">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Name" name="first_name"
-									value="{{$patient->first_name}}" id="first_name">
+									value="{{$patient->first_name ?? ''}}" id="first_name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<input type="text" class="form-control" placeholder="Last Name" name="last_name"
-									value="{{$patient->last_name}}" id="last_name">
+									value="{{$patient->last_name ?? ''}}" id="last_name">
 							</div>
 						</div>
 					</div>
@@ -213,7 +213,7 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 								<input type="email" class="form-control" placeholder="Email Address"
-									value="{{$patient->email}}" name="email" id="email">
+									value="{{$patient->email ?? ''}}" name="email" id="email">
 							</div>
 						</div>
 					</div>
@@ -222,7 +222,8 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 								<input type="contact_number" class="form-control" placeholder="Contact Number"
-									value="{{$patient->contact_number}}" name="contact_number" id="contact_number">
+									value="{{$patient->contact_number ?? ''}}" name="contact_number"
+									id="contact_number">
 							</div>
 						</div>
 					</div>
