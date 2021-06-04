@@ -57,17 +57,38 @@
 							<tbody>
 								@foreach($prescriptions as $item)
 								<tr>
-									<td>{{ $loop->iteration }}</td>
+									<td>INQ{{ $item->id }}</td>
 									<td>{{ $item->created_at }}</td>
 									<td>{{ $item->doctor->first_name }} {{ $item->doctor->last_name }}</td>
 									<td>{{ $item->status}}</td>
 									<td>
-										<a href="#" title="View Prescription"><button class="btn btn-info btn-sm"><i
-													class="fa fa-eye" aria-hidden="true"></i>
-												View</button></a>
-										<a href="#" title="Edit Prescription"><button class="btn btn-primary btn-sm"><i
-													class="fa fa-pencil-square-o" aria-hidden="true"></i>
-												Edit</button></a>
+										<a href="#" title="View Prescription">
+											<button class="btn btn-info btn-sm"
+												onclick="document.getElementById('view-detail-{{ $item->id }}').style.display=''">
+												<i class="fa fa-eye" aria-hidden="true"></i>View
+											</button>
+										</a>
+									</td>
+								</tr>
+								<tr id="view-detail-{{ $item->id }}" style="display: none">
+									<td colspan="5">
+										<div>
+											<strong> My Note:</strong>
+											<p>{!! nl2br($item->patient_note)!!}</p>
+											@if ($item->description)
+											<strong> Doctor's Note:</strong>
+											<p>{!! nl2br($item->description) !!}</p>
+											@endif
+											@if ($item->pharmacy)
+											<strong> Pharmacy:</strong>
+											<p>
+												{{ $item->pharmacy->pharmacy_name  }} <br>
+												{{ $item->pharmacy->pharmacy_address  }} <br>
+												{{ $item->pharmacy->pharmacy_phone  }}
+											</p>
+											@endif
+
+										</div>
 									</td>
 								</tr>
 								@endforeach
