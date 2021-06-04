@@ -6,7 +6,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Pharmacy;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PharmaciesController extends Controller
 {
@@ -60,18 +62,31 @@ class PharmaciesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'first_name' => 'required|max:20',
-			'last_name' => 'max:20',
-			'email' => 'required|email|max:60',
-			'registration_number' => 'required|max:10',
-			'email' => 'required|email|max:60',
-			'pharmacy_name' => 'required|string|max:40',
-			'contact_number' => 'required|digits:10',
-			'pharmacy_phone' => 'required|digits:10',
-			'fax_number' => 'numeric|digits:10'
-		]);
+            'first_name' => 'required|max:20',
+            'last_name' => 'max:20',
+            'email' => 'required|email|max:60',
+            'registration_number' => 'required|max:10',
+            'email' => 'required|email|max:60',
+            'pharmacy_name' => 'required|string|max:40',
+            'contact_number' => 'required|digits:10',
+            'pharmacy_phone' => 'required|digits:10',
+            'fax_number' => 'numeric|digits:10'
+        ]);
         $requestData = $request->all();
-        
+
+        // we create a associated user account with a random password
+        $user =  User::create([
+            'name' => $request->first_name,
+            'email' => $request->email,
+            'password' => Hash::make('12345678'),
+            'user_type' => User::USER_TYPE_PHARMACIST
+        ]);
+
+        //@todo
+        // need to send the random generated password to the doctor's email
+
+        $requestData['user_id'] = $user->id;
+
         Pharmacy::create($requestData);
 
         return redirect('admin/pharmacies')->with('flash_message', 'Pharmacy added!');
@@ -116,18 +131,18 @@ class PharmaciesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-			'first_name' => 'required|max:20',
-			'last_name' => 'max:20',
-			'email' => 'required|email|max:60',
-			'registration_number' => 'required|max:10',
-			'email' => 'required|email|max:60',
-			'pharmacy_name' => 'required|string|size:40',
-			'contact_number' => 'required|digits:10',
-			'pharmacy_phone' => 'required|digits:10',
-			'fax_number' => 'numeric|digits:10'
-		]);
+            'first_name' => 'required|max:20',
+            'last_name' => 'max:20',
+            'email' => 'required|email|max:60',
+            'registration_number' => 'required|max:10',
+            'email' => 'required|email|max:60',
+            'pharmacy_name' => 'required|string|size:40',
+            'contact_number' => 'required|digits:10',
+            'pharmacy_phone' => 'required|digits:10',
+            'fax_number' => 'numeric|digits:10'
+        ]);
         $requestData = $request->all();
-        
+
         $pharmacy = Pharmacy::findOrFail($id);
         $pharmacy->update($requestData);
 
