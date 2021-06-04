@@ -192,18 +192,19 @@
 				<div id="message-booking"></div>
 				<form method="post" action="{{route('patient.inquiries.store')}}" id="booking">
 					{{ csrf_field() }}
-					<input type="hidden" value="Dr. Julia Jhones" name="doctor_name_booking" id="doctor_name_booking">
+					<input type="hidden" value="{{$patient->id}}" name="patient_id">
+					<input type="hidden" value="{{$doctor->id}}" name="doctor_id">
 					<div class="row">
 						<div class="col-md-6 ">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Name" name="name_booking"
-									value="{{Auth::user()}}" id="name_booking">
+								<input type="text" class="form-control" placeholder="Name" name="first_name"
+									value="{{$patient->first_name}}" id="first_name">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Last Name" name="lastname_booking"
-									id="lastname_booking">
+								<input type="text" class="form-control" placeholder="Last Name" name="last_name"
+									value="{{$patient->last_name}}" id="last_name">
 							</div>
 						</div>
 					</div>
@@ -212,53 +213,28 @@
 						<div class="col-lg-12">
 							<div class="form-group">
 								<input type="email" class="form-control" placeholder="Email Address"
-									name="email_booking" id="email_booking">
+									value="{{$patient->email}}" name="email" id="email">
 							</div>
 						</div>
 					</div>
-					<!-- /row -->
-					<div class="row">
-						<div class="col-6">
-							<div class="form-group">
-								<input class="form-control" type="text" id="booking_date" name="booking_date"
-									data-lang="en" data-min-year="2017" data-max-year="2020"
-									data-disabled-days="10/17/2017,11/18/2017">
-							</div>
-						</div>
-						<div class="col-6">
-							<div class="form-group">
-								<input class="form-control" type="text" id="booking_time" name="booking_time">
-							</div>
-						</div>
-					</div>
-					<!-- /row -->
+
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<select class="form-control" name="booking_visit" id="booking_visit">
-									<option value="">Select visit</option>
-									<option value="General visit">General visit</option>
-									<option value="Cardiothoracic Radiology">Cardiothoracic Radiology</option>
-									<option value="Abdominal Radiology">Abdominal Radiology</option>
-								</select>
+								<input type="contact_number" class="form-control" placeholder="Contact Number"
+									value="{{$patient->contact_number}}" name="contact_number" id="contact_number">
 							</div>
 						</div>
 					</div>
-					<!-- /row -->
+
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="form-group">
-								<textarea rows="5" id="booking_message" name="booking_message" class="form-control"
-									style="height:80px;" placeholder="Additional message"></textarea>
-							</div>
-						</div>
-					</div>
-					<!-- /row -->
-					<div class="row">
-						<div class="col-md-12">
-							<div class="form-group">
-								<input type="text" id="verify_booking" class="form-control"
-									placeholder="Human verify: 3 + 1 =?">
+								<textarea rows="8" id="patient_note" name="patient_note"
+									class="form-control {{ $errors->has('patient_note') ? 'text-danger' : ''}}""
+									style=" height:200px;" placeholder="Describe your illness"></textarea>
+								{!! $errors->first('patient_note', '<p class="text-danger">:message</p>')
+								!!}
 							</div>
 						</div>
 					</div>

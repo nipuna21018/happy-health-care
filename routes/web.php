@@ -33,6 +33,7 @@ Route::get('/doctor-profile/{id}', 'DoctorController@show')->name('doctor-profil
 Route::get('/search-doctors', 'DoctorController@index')->name('search');
 
 Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])->group(function () {
+    Route::get('/inquiry/confirmed', 'Patient\InquiryController@confirmed')->name('inquiries.confirmed');
     Route::resource('inquiries', 'Patient\InquiryController');
     Route::get('/profile', 'Patient\ProfileController@create')->name('profile.create');
     Route::post('/profile', 'Patient\ProfileController@store')->name('profile.post');

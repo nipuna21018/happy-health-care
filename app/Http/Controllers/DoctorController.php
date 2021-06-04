@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use App\Models\DoctorSpecialization;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
@@ -49,6 +51,7 @@ class DoctorController extends Controller
     public function show($id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('doctor', compact('doctor'));
+        $patient = Patient::where("user_id", Auth::id())->first();
+        return view('doctor', compact('doctor', 'patient'));
     }
 }

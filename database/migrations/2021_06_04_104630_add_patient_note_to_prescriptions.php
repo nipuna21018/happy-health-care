@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserTypeToUsers extends Migration
+class AddPatientNoteToPrescriptions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUserTypeToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('user_type', ["admin", "doctor", "patient", "pharmacist"])->default('patient');
+        Schema::table('prescriptions', function (Blueprint $table) {
+            $table->text('patient_note')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddUserTypeToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('prescriptions', function (Blueprint $table) {
             //
         });
     }

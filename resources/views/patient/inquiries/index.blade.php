@@ -48,9 +48,9 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>Patient Name</th>
+									<th>Date</th>
 									<th>Doctor Name</th>
-									<th>Pharmacy</th>
+									<th>Status</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
@@ -58,28 +58,16 @@
 								@foreach($prescriptions as $item)
 								<tr>
 									<td>{{ $loop->iteration }}</td>
-									<td>{{ $item->patient->first_name }}</td>
-									<td>{{ $item->doctor->first_name }}</td>
-									<td>{{ $item->pharmacy->pharmacy_name ?? ""  }}</td>
+									<td>{{ $item->created_at }}</td>
+									<td>{{ $item->doctor->first_name }} {{ $item->doctor->last_name }}</td>
+									<td>{{ $item->status}}</td>
 									<td>
-										<a href="{{ url('/admin/prescriptions/' . $item->id) }}"
-											title="View Prescription"><button class="btn btn-info btn-sm"><i
+										<a href="#" title="View Prescription"><button class="btn btn-info btn-sm"><i
 													class="fa fa-eye" aria-hidden="true"></i>
 												View</button></a>
-										<a href="{{ url('/admin/prescriptions/' . $item->id . '/edit') }}"
-											title="Edit Prescription"><button class="btn btn-primary btn-sm"><i
+										<a href="#" title="Edit Prescription"><button class="btn btn-primary btn-sm"><i
 													class="fa fa-pencil-square-o" aria-hidden="true"></i>
 												Edit</button></a>
-
-										<form method="POST" action="{{ url('/admin/prescriptions' . '/' . $item->id) }}"
-											accept-charset="UTF-8" style="display:inline">
-											{{ method_field('DELETE') }}
-											{{ csrf_field() }}
-											<button type="submit" class="btn btn-danger btn-sm"
-												title="Delete Prescription"
-												onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-													class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-										</form>
 									</td>
 								</tr>
 								@endforeach

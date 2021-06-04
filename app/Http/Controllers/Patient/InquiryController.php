@@ -36,39 +36,10 @@ class InquiryController extends Controller
         return view('patient/inquiries.index', compact('prescriptions'));
     }
 
-    /**
-     * Display a listing of the prescribed inquiries.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function prescribed(Request $request)
-    {
-        $user = $request->user();
-        $keyword = $request->get('search');
-        $perPage = 25;
 
-        if (!empty($keyword)) {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
-                ->where('status', '!=', 'pending')
-                ->orWhere('description', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $prescriptions = Prescription::where('doctor_id', '=', $user->id)
-                ->where('status', '!=', 'pending')
-                ->latest()->paginate($perPage);
-        }
-        $patient = Patient::where("user_id", $user->id)->first();
-        return view('doctor/inquiries.prescribed', compact('prescriptions', 'patient'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
+    public function confirmed()
     {
-        return view('admin/prescription.prescriptions.create');
+        return view('patient/inquiries.confirmed');
     }
 
     /**
@@ -80,16 +51,18 @@ class InquiryController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'patient_id' => 'required',
-            'doctor_id' => 'required'
+            'doctor_id' => 'required',
+            'patient_note' => 'required'
         ]);
         $requestData = $request->all();
 
+
         Prescription::create($requestData);
 
-        return "hello";
-        return redirect('payment')->with('flash_message', 'Prescription added!');
+        return redirect()->route('patient.inquiries.confirmed')->with('flash_message', 'Prescription added!');
     }
 
     /**

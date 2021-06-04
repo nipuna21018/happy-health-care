@@ -14,10 +14,10 @@ class Prescription extends Model
     protected $table = 'prescriptions';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,7 @@ class Prescription extends Model
      *
      * @var array
      */
-    protected $fillable = ['patient_id', 'doctor_id', 'pharmacy_id', 'description', 'status'];
+    protected $fillable = ['patient_id', 'doctor_id', 'pharmacy_id', 'description', 'status', 'patient_note'];
 
     public function patient()
     {
@@ -39,5 +39,4 @@ class Prescription extends Model
     {
         return $this->belongsTo('App\Models\Pharmacy');
     }
-    
 }
