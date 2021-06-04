@@ -14,10 +14,10 @@ class Doctor extends Model
     protected $table = 'doctors';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -31,10 +31,9 @@ class Doctor extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-    
+
     public function doctorSpecialization()
     {
-        return $this->belongsTo('App\Models\DoctorSpecialization','specialization', 'id');
+        return $this->belongsTo('App\Models\DoctorSpecialization', 'specialization', 'id');
     }
-    
 }

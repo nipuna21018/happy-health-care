@@ -25,14 +25,14 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 	<!-- BASE CSS -->
-	<link href="landing/css/bootstrap.min.css" rel="stylesheet">
-	<link href="landing/css/style.css" rel="stylesheet">
-	<link href="landing/css/menu.css" rel="stylesheet">
-	<link href="landing/css/vendors.css" rel="stylesheet">
-	<link href="landing/css/icon_fonts/css/all_icons_min.css" rel="stylesheet">
+	<link href="{{ asset('landing/css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
+	<link href="{{ asset('landing/css/menu.css')}}" rel="stylesheet">
+	<link href="{{ asset('landing/css/vendors.css')}}" rel="stylesheet">
+	<link href="{{ asset('landing/css/icon_fonts/css/all_icons_min.css')}}" rel="stylesheet">
 
 	<!-- YOUR CUSTOM CSS -->
-	<link href="landing/css/custom.css" rel="stylesheet">
+	<link href="{{ asset('landing/css/custom.css')}}" rel="stylesheet">
 	@yield('styles')
 
 
@@ -61,8 +61,22 @@
 					<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="#0"><span>Menu
 							mobile</span></a>
 					<ul id="top_access">
+
+
+						@if (Auth::user())
+						<li><a href="{{route('patient.profile.create')}}">Welcome {{Auth::user()->name}}!</a></li>
+						<li>
+							<a href=" {{ route('login') }}" href="{{ route('logout') }}" onclick="event.preventDefault();
+							document.getElementById('logout-form').submit();"><i class="pe-7s-power"></i></a>
+							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+								@csrf
+							</form>
+						</li>
+						@else
 						<li><a href="{{ route('login') }}"><i class="pe-7s-user"></i></a></li>
 						<li><a href="{{ route('register') }}"><i class="pe-7s-add-user"></i></a></li>
+						@endif
+
 					</ul>
 					<div class="main-menu">
 						<ul>
@@ -91,8 +105,8 @@
 				<div class="col-lg-3 col-md-12">
 					<p>
 						<a href="index.html" title="Findoctor">
-							<img src="landing/img/logo.png" data-retina="true" alt="" width="163" height="36"
-								class="img-fluid">
+							<img src="{{ asset('landing/img/logo.png')}}" data-retina="true" alt="" width="163"
+								height="36" class="img-fluid">
 						</a>
 					</p>
 				</div>
@@ -154,9 +168,9 @@
 	<div id="toTop"></div>
 
 	<!-- COMMON SCRIPTS -->
-	<script src="landing/js/jquery-3.5.1.min.js"></script>
-	<script src="landing/js/common_scripts.min.js"></script>
-	<script src="landing/js/functions.js"></script>
+	<script src="{{ asset('landing/js/jquery-3.5.1.min.js')}}"></script>
+	<script src="{{ asset('landing/js/common_scripts.min.js')}}"></script>
+	<script src="{{ asset('landing/js/functions.js')}}"></script>
 
 	<!-- SPECIFIC SCRIPTS -->
 	@yield('scripts')

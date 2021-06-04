@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -23,13 +23,20 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-Route::get('/search-doctors', function () {
-    return view('search');
-})->name('search');
+
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');
+Route::get('/doctor-profile/{id}', 'DoctorController@show')->name('doctor-profile');
+Route::get('/search-doctors', 'DoctorController@index')->name('search');
+
+Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])->group(function () {
+    Route::resource('inquiries', 'Patient\InquiryController');
+    Route::get('/profile', 'Patient\ProfileController@create')->name('profile.create');
+    Route::post('/profile', 'Patient\ProfileController@store')->name('profile.post');
+});
 
 
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
