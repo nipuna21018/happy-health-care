@@ -101,7 +101,8 @@ class InquiryController extends Controller
     {
         $this->validate($request, [
             'patient_id' => 'required',
-            'doctor_id' => 'required'
+            'doctor_id' => 'required',
+            'description' => 'required'
         ]);
         $requestData = $request->all();
 

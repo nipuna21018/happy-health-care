@@ -52,6 +52,6 @@ class ProfileController extends Controller
             $patient->update($requestData);
         }
 
-        return redirect('patient/profile')->with('flash_message', 'Profile Created!');
+        return redirect('patient/profile')->with('flash_message', 'Profile updated successfully!');
     }
 }

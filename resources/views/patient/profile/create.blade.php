@@ -44,6 +44,11 @@
 				<p>Your patient profile is incomplete. Complete it before you can send inquiries</p>
 				@endif
 
+				@if(Session::has('flash_message'))
+				<p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('flash_message') }}
+				</p>
+				@endif
+
 				<div>
 					<div id="message-contact"></div>
 					<form method="POST" action="{{ route('patient.profile.create') }}" accept-charset="UTF-8"

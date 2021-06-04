@@ -3,6 +3,16 @@
         <h2><i class="fa fa-{{ $formMode === 'edit' ? 'edit' : 'file' }}"></i>{{ $title }}</h2>
     </div>
 
+
+    <a class="btn btn-warning btn-sm" href="{{ url('doctor/inquiries') }}" title="Back">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+    </a>
+    <a class="btn btn-primary btn-sm" href="{{ url('/doctor/patients/' . $prescription->patient_id) }}" target="_blank"
+        title="Patient History">
+        <i class="fa fa-eye" aria-hidden="true"></i> Patient History
+    </a>
+
+    <br>
     <div class="form-group {{ $errors->has('patient_id') ? 'has-error' : ''}}">
         <input class="form-control" name="patient_id" type="hidden" id="patient_id"
             value="{{ isset($prescription->patient_id) ? $prescription->patient_id : old('patient_id') }}" required>
@@ -12,6 +22,12 @@
         <input class="form-control" name="doctor_id" type="hidden" id="doctor_id"
             value="{{ isset($prescription->doctor_id) ? $prescription->doctor_id : old('doctor_id') }}" required>
         {!! $errors->first('doctor_id', '<p class="help-block text-danger">:message</p>') !!}
+    </div>
+    <div class="form-group">
+        <label for="description" class="control-label">Patient
+            Note</label>
+        <textarea readonly class="form-control" rows="5" name="description" type="textarea"
+            id="description">{{ $prescription->patient_note }}</textarea>
     </div>
     <div class="form-group {{ $errors->has('description') ? 'has-error' : ''}}">
         <label for="description"
