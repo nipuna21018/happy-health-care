@@ -66,11 +66,11 @@ class PharmaciesController extends Controller
             'last_name' => 'max:20',
             'email' => 'required|email|max:60',
             'registration_number' => 'required|max:10',
-            'email' => 'required|email|max:60',
+            'email' => 'required|email|max:60|unique:users,email',
             'pharmacy_name' => 'required|string|max:40',
             'contact_number' => 'required|digits:10',
             'pharmacy_phone' => 'required|digits:10',
-            'fax_number' => 'numeric|digits:10'
+            'fax_number' => 'nullable|numeric|digits:10'
         ]);
         $requestData = $request->all();
 
@@ -139,7 +139,7 @@ class PharmaciesController extends Controller
             'pharmacy_name' => 'required|string|size:40',
             'contact_number' => 'required|digits:10',
             'pharmacy_phone' => 'required|digits:10',
-            'fax_number' => 'numeric|digits:10'
+            'fax_number' => 'nullable|numeric|digits:10'
         ]);
         $requestData = $request->all();
 

@@ -1,37 +1,29 @@
 @extends('layouts.admin')
 
 @section('content')
-    
-   
-    <!-- Breadcrumbs-->
-     <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{ url('/admin/') }}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item">
-            <a href="{{ url('/admin/doctors') }}">Doctors</a>
-        </li>
-        <li class="breadcrumb-item active">Update #{{ $doctor->id }}</li>
-    </ol>
-        
 
-            @if ($errors->any())
-                <ul class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
 
-            <form method="POST" action="{{ url('/admin/doctors/' . $doctor->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                {{ method_field('PATCH') }}
-                {{ csrf_field() }}
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/') }}">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/doctors') }}">Doctors</a>
+    </li>
+    <li class="breadcrumb-item active">Update #{{ $doctor->id }}</li>
+</ol>
 
-                @include ('admin.doctors.form', ['formMode' => 'edit', 'title' => 'Update #' . $doctor->id])
+<form method="POST" action="{{ url('/admin/doctors/' . $doctor->id) }}" accept-charset="UTF-8" class="form-horizontal"
+    enctype="multipart/form-data">
+    {{ method_field('PATCH') }}
+    {{ csrf_field() }}
 
-            </form>
+    @include ('admin.doctors.form', ['formMode' => 'edit', 'title' => 'Update #' . $doctor->id])
 
-     
-   
-       
+</form>
+
+
+
+
 @endsection

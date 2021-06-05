@@ -76,7 +76,7 @@ class PatientsController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:20',
             'last_name' => 'max:20',
-            'email' => 'required|email|max:60',
+            'email' => 'required|email|max:60|unique:users,email',
             'contact_number' => 'required|digits:10',
             'date_of_birth' => 'required|date',
             'weight' => 'required|numeric',

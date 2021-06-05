@@ -2,11 +2,19 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0">Pharmacies</h5>
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/') }}">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Pharmacies</li>
+</ol>
+
+<div class="box_general padding_bottom">
+    <div class="header_box version_2">
+        <h2><i class="fa fa-list"></i>Pharmacies</h2>
     </div>
-    <div class="card-body">
+    <div>
         <a href="{{ url('/admin/pharmacies/create') }}" class="btn btn-success btn-sm" title="Add New Pharmacy">
             <i class="fa fa-plus" aria-hidden="true"></i> Add New
         </a>
@@ -32,9 +40,10 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Owner First Name</th>
-                        <th>Owner Last Name</th>
-                        <th>Registration Number</th>
+                        <th>Owner Name</th>
+                        <th>Owner Contact</th>
+                        <th>Owner Reg#</th>
+                        <th>Pharmacy Contact</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -42,10 +51,11 @@
                     @foreach($pharmacies as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->pharmacy_name }}</td>
-                        <td>{{ $item->first_name }}</td>
-                        <td>{{ $item->last_name }}</td>
+                        <td>{{ $item->pharmacy_name }} </td>
+                        <td>{{ $item->first_name }} {{ $item->last_name }}</td>
+                        <td>{{ $item->contact_number }}</td>
                         <td>{{ $item->registration_number }}</td>
+                        <td>{{ $item->pharmacy_phone }}</td>
                         <td>
                             <a href="{{ url('/admin/pharmacies/' . $item->id) }}" title="View Pharmacy"><button
                                     class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>

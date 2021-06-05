@@ -14,10 +14,10 @@ class Pharmacy extends Model
     protected $table = 'pharmacies';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,5 @@ class Pharmacy extends Model
      *
      * @var array
      */
-    protected $fillable = ['first_name', 'last_name', 'registration_number', 'email', 'contact_number', 'address', 'pharmacy_name', 'pharmacy_address', 'pharmacy_city', 'pharmacy_phone', 'fax_number'];
-
-    
+    protected $fillable = ['first_name', 'last_name', 'registration_number', 'email', 'contact_number', 'address', 'pharmacy_name', 'pharmacy_address', 'pharmacy_city', 'pharmacy_phone', 'fax_number', 'user_id'];
 }

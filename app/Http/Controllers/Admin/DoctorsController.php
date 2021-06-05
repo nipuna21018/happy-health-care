@@ -72,9 +72,10 @@ class DoctorsController extends Controller
 
         $this->validate($request, [
             'first_name' => 'required|max:50',
-            'email' => 'required|email|max:50',
+            'email' => 'required|email|max:50|unique:users,email',
             'mobile' => 'required|digits:10',
             'registration_number' => 'required',
+            'professional_statement' => 'required',
         ]);
         $requestData = $request->all();
 
@@ -138,6 +139,7 @@ class DoctorsController extends Controller
             'email' => 'required|email|max:50',
             'mobile' => 'required|digits:10',
             'registration_number' => 'required',
+            'professional_statement' => 'required',
         ]);
         $requestData = $request->all();
 

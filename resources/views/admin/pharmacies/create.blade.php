@@ -2,25 +2,23 @@
 
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0">Create New Pharmacy</h5>
-    </div>
-    <div class="card-body">
-        <a href="{{ url('/admin/pharmacies') }}" title="Back"><button class="btn btn-warning btn-sm"><i
-                    class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-        <br />
-        <br />
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/') }}">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/pharmacies') }}">Pharmacies</a>
+    </li>
+    <li class="breadcrumb-item active">Add Pharmacy</li>
+</ol>
 
-        <form method="POST" action="{{ url('/admin/pharmacies') }}" accept-charset="UTF-8" class="form-horizontal"
-            enctype="multipart/form-data">
-            {{ csrf_field() }}
+<form method="POST" action="{{ url('/admin/pharmacies') }}" accept-charset="UTF-8" class="form-horizontal"
+    enctype="multipart/form-data">
+    {{ csrf_field() }}
 
-            @include ('admin.pharmacies.form', ['formMode' => 'create'])
+    @include ('admin.pharmacies.form', ['formMode' => 'create'])
 
-        </form>
-
-    </div>
-</div>
+</form>
 
 @endsection
