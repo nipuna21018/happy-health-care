@@ -129,9 +129,7 @@
 						<p>Summary of the educational qualifications.</p>
 					</div>
 					<div class="wrapper_indent">
-						<p>Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus
-							id, mattis vel, nisi. Nullam mollis. Phasellus hendrerit. Pellentesque aliquet nibh nec
-							urna. In nisi neque, aliquet vel, dapi.</p>
+						<p>{!! nl2br($doctor->education_qualiication) !!}</p>
 
 						@if ($doctor->curriculum)
 						<h6>Curriculum</h6>
