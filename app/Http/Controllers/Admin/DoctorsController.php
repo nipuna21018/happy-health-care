@@ -119,8 +119,8 @@ class DoctorsController extends Controller
     public function edit($id)
     {
         $doctor = Doctor::findOrFail($id);
-
-        return view('admin.doctors.edit', compact('doctor'));
+        $doctorSpecializations =  DoctorSpecialization::all();
+        return view('admin.doctors.edit', compact('doctor', 'doctorSpecializations'));
     }
 
     /**
@@ -136,7 +136,8 @@ class DoctorsController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:50',
             'email' => 'required|email|max:50',
-            'mobile' => 'required|digits:10'
+            'mobile' => 'required|digits:10',
+            'registration_number' => 'required',
         ]);
         $requestData = $request->all();
 

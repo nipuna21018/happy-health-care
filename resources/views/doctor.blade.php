@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('styles')
+
+<style>
+	.two-column {
+		columns: 2;
+		-webkit-columns: 2;
+		-moz-columns: 2;
+	}
+</style>
 @endsection
 
 @section('scripts')
@@ -51,8 +59,8 @@
 								<h1>{{$doctor->first_name}} {{$doctor->last_name}}</h1>
 
 								<ul class="statistic">
-									<li>{{$doctor->gender}}</li>
-									<li>{{$doctor->registration_number??"-"}}</li>
+									<li title="Registration Number">{{$doctor->registration_number??"-"}}</li>
+									<li title="Gender">{{ucfirst($doctor->gender)}}</li>
 								</ul>
 								<ul class="contacts">
 									<li>
@@ -77,34 +85,39 @@
 					<div class="indent_title_in">
 						<i class="pe-7s-user"></i>
 						<h3>Professional statement</h3>
-						<p>Mussum ipsum cacilds, vidis litro abertis.</p>
+						<p>About the professional qualifications & experience.</p>
 					</div>
 					<div class="wrapper_indent">
-						<p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit
-							nunc tortor eu nibh. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-							hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id,
-							mattis vel, nisi. Nullam mollis. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In
-							nisi neque, aliquet vel, dapi.</p>
+						<p>{!! nl2br($doctor->professional_statement) !!}</p>
+
+						@if ($doctor->sub_specializations)
 						<h6>Specializations</h6>
 						<div class="row">
-							<div class="col-lg-6">
-								<ul class="bullets">
-									<li>Abdominal Radiology</li>
-									<li>Addiction Psychiatry</li>
-									<li>Adolescent Medicine</li>
-									<li>Cardiothoracic Radiology </li>
-								</ul>
-							</div>
-							<div class="col-lg-6">
-								<ul class="bullets">
-									<li>Abdominal Radiology</li>
-									<li>Addiction Psychiatry</li>
-									<li>Adolescent Medicine</li>
-									<li>Cardiothoracic Radiology </li>
+							<div class="col-lg-12">
+								<ul class="bullets two-column">
+									@foreach (explode(',',$doctor->sub_specializations) as $sub_specialization )
+									<li>{{$sub_specialization}}</li>
+									@endforeach
 								</ul>
 							</div>
 						</div>
-						<!-- /row-->
+						@endif
+
+
+						@if ($doctor->experience_after_graduation)
+
+						<h6 class="mt-4">Experience after graduation</h6>
+						<div class="row">
+							<div class="col-lg-12">
+								<ul class="bullets">
+									@foreach (explode(PHP_EOL,$doctor->experience_after_graduation) as $experience)
+									<li>{{$experience}}</li>
+									@endforeach
+								</ul>
+							</div>
+						</div>
+						@endif
+
 					</div>
 					<!-- /wrapper indent -->
 
@@ -113,70 +126,24 @@
 					<div class="indent_title_in">
 						<i class="pe-7s-news-paper"></i>
 						<h3>Education</h3>
-						<p>Mussum ipsum cacilds, vidis litro abertis.</p>
+						<p>Summary of the educational qualifications.</p>
 					</div>
 					<div class="wrapper_indent">
 						<p>Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus
 							id, mattis vel, nisi. Nullam mollis. Phasellus hendrerit. Pellentesque aliquet nibh nec
 							urna. In nisi neque, aliquet vel, dapi.</p>
+
+						@if ($doctor->curriculum)
 						<h6>Curriculum</h6>
 						<ul class="list_edu">
-							<li><strong>New York Medical College</strong> - Doctor of Medicine</li>
-							<li><strong>Montefiore Medical Center</strong> - Residency in Internal Medicine</li>
-							<li><strong>New York Medical College</strong> - Master Internal Medicine</li>
+							@foreach (explode(PHP_EOL,$doctor->curriculum) as $curriculum)
+							<li>{{$curriculum}}</li>
+							@endforeach
 						</ul>
+						@endif
+
 					</div>
 					<!--  End wrapper indent -->
-
-					<hr>
-
-					<div class="indent_title_in">
-						<i class="pe-7s-cash"></i>
-						<h3>Prices &amp; Payments</h3>
-						<p>Mussum ipsum cacilds, vidis litro abertis.</p>
-					</div>
-					<div class="wrapper_indent">
-						<p>Zril causae ancillae sit ea. Dicam veritus mediocritatem sea ex, nec id agam eius. Te pri
-							facete latine salutandi, scripta mediocrem et sed, cum ne mundi vulputate. Ne his sint
-							graeco detraxit, posse exerci volutpat has in.</p>
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Service - Visit</th>
-										<th>Price</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>New patient visit</td>
-										<td>$34</td>
-									</tr>
-									<tr>
-										<td>General consultation</td>
-										<td>$60</td>
-									</tr>
-									<tr>
-										<td>Back Pain</td>
-										<td>$40</td>
-									</tr>
-									<tr>
-										<td>Diabetes Consultation</td>
-										<td>$55</td>
-									</tr>
-									<tr>
-										<td>Eating disorder</td>
-										<td>$60</td>
-									</tr>
-									<tr>
-										<td>Foot Pain</td>
-										<td>$35</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<!--  /wrapper_indent -->
 				</div>
 				<!-- /section_1 -->
 			</div>

@@ -50,6 +50,7 @@
 									<th>#</th>
 									<th>Date</th>
 									<th>Doctor Name</th>
+									<th>Specialization</th>
 									<th>Status</th>
 									<th>Actions</th>
 								</tr>
@@ -60,6 +61,7 @@
 									<td>INQ{{ $item->id }}</td>
 									<td>{{ $item->created_at }}</td>
 									<td>{{ $item->doctor->first_name }} {{ $item->doctor->last_name }}</td>
+									<td>{{ $item->doctor->doctorSpecialization->name}}</td>
 									<td>{{ $item->status}}</td>
 									<td>
 										<a href="#" title="View Prescription">

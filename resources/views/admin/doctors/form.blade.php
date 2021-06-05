@@ -161,7 +161,7 @@
 
 <div class="box_general padding_bottom">
     <div class="header_box version_2">
-        <h2><i class="fa fa-file-text"></i>Curriculum</h2>
+        <h2><i class="fa fa-file-text"></i>Education & Experience</h2>
     </div>
 
     <div class="form-group {{ $errors->has('professional_statement') ? 'has-error' : ''}}">
@@ -172,28 +172,43 @@
             id="professional_statement">{{ isset($doctor->professional_statement) ? $doctor->professional_statement : old('professional_statement')}}</textarea>
         {!! $errors->first('professional_statement', '<p class="help-block text-danger">:message</p>') !!}
     </div>
-    <div class="form-group {{ $errors->has('sub-specializations') ? 'has-error' : ''}}">
-        <label for="sub-specializations"
-            class="control-label {{ $errors->has('sub-specializations') ? 'text-danger' : ''}}">{{ 'Other Specializations' }}</label>
-        <input class="form-control" name="sub-specializations" type="text" id="sub-specializations"
+    <div class="form-group {{ $errors->has('sub_specializations') ? 'has-error' : ''}}">
+        <label for="sub_specializations"
+            class="control-label {{ $errors->has('sub_specializations') ? 'text-danger' : ''}}">{{ 'Other Specializations' }}</label>
+        <input class="form-control" name="sub_specializations" type="text" id="sub_specializations"
             placeholder="Ex: Abdominal radiology, Breast imaging, Cardiothoracic radiology ..."
-            value="{{ isset($doctor->subspecializations) ? $doctor->subspecializations : old('sub-specializations') }}">
-        {!! $errors->first('sub-specializations', '<p class="help-block text-danger">:message</p>') !!}
+            value="{{ isset($doctor->sub_specializations) ? $doctor->sub_specializations : old('sub_specializations') }}">
+        <small class="form-text text-muted">Enter other specializations seperated by a comma</small>
+        {!! $errors->first('sub_specializations', '<p class="help-block text-danger">:message</p>') !!}
     </div>
 
-    <div class="form-group {{ $errors->has('education_qualiication') ? 'has-error' : ''}}">
-        <label for="education_qualiication"
-            class="control-label {{ $errors->has('education_qualiication') ? 'text-danger' : ''}}">{{ 'Education Qualiication' }}</label>
-        <textarea class="form-control" rows="5" name="education_qualiication" type="textarea"
-            id="education_qualiication">{{ isset($doctor->education_qualiication) ? $doctor->education_qualiication : old('education_qualiication')}}</textarea>
-        {!! $errors->first('education_qualiication', '<p class="help-block text-danger">:message</p>') !!}
-    </div>
     <div class="form-group {{ $errors->has('experience_after_graduation') ? 'has-error' : ''}}">
         <label for="experience_after_graduation"
             class="control-label {{ $errors->has('experience_after_graduation') ? 'text-danger' : ''}}">{{ 'Experience After Graduation' }}</label>
         <textarea class="form-control" rows="5" name="experience_after_graduation" type="textarea"
             id="experience_after_graduation">{{ isset($doctor->experience_after_graduation) ? $doctor->experience_after_graduation : old('experience_after_graduation')}}</textarea>
+        <small class="form-text text-muted">Follow the format of
+            [Place of work] - [Designation]</small>
         {!! $errors->first('experience_after_graduation', '<p class="help-block text-danger">:message</p>') !!}
+    </div>
+
+    <div class="form-group {{ $errors->has('education_qualiication') ? 'has-error' : ''}}">
+        <label for="education_qualiication"
+            class="control-label {{ $errors->has('education_qualiication') ? 'text-danger' : ''}}">{{ 'Education Statement' }}</label>
+        <textarea class="form-control" rows="5" name="education_qualiication" type="textarea"
+            id="education_qualiication">{{ isset($doctor->education_qualiication) ? $doctor->education_qualiication : old('education_qualiication')}}</textarea>
+        {!! $errors->first('education_qualiication', '<p class="help-block text-danger">:message</p>') !!}
+    </div>
+
+    <div class="form-group {{ $errors->has('curriculum') ? 'has-error' : ''}}">
+        <label for="curriculum"
+            class="control-label {{ $errors->has('curriculum') ? 'text-danger' : ''}}">{{ 'Curriculum' }}</label>
+        <textarea class="form-control" rows="5" name="curriculum" type="textarea"
+            placeholder="Ex: New York Medical College - Doctor of Medicine"
+            id="curriculum">{{ isset($doctor->curriculum) ? $doctor->curriculum : old('curriculum')}}</textarea>
+        <small class="form-text text-muted">Follow the format of
+            [Collage/University] - [Degree/Examination/Certification]</small>
+        {!! $errors->first('curriculum', '<p class="help-block text-danger">:message</p>') !!}
     </div>
 
 </div>
