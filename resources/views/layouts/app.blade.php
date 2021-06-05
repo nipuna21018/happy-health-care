@@ -54,7 +54,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-6">
 					<div id="logo_home">
-						<h1><a href="index.html" title="Findoctor">Findoctor</a></h1>
+						<h1><a href="index.html" title="HappyHealthCare">HappyHealthCare</a></h1>
 					</div>
 				</div>
 				<nav class="col-lg-9 col-6">
@@ -104,7 +104,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-12">
 					<p>
-						<a href="index.html" title="Findoctor">
+						<a href="index.html" title="HappyHealthCare">
 							<img src="{{ asset('landing/img/logo.png')}}" data-retina="true" alt="" width="163"
 								height="36" class="img-fluid">
 						</a>
@@ -133,7 +133,8 @@
 					<h5>Contact with Us</h5>
 					<ul class="contacts">
 						<li><a href="tel://61280932400"><i class="icon_mobile"></i> + 61 23 8093 3400</a></li>
-						<li><a href="mailto:info@findoctor.com"><i class="icon_mail_alt"></i> help@findoctor.com</a>
+						<li><a href="mailto:info@happyhealthcare.lk"><i class="icon_mail_alt"></i>
+								help@happyhealthcare.lk</a>
 						</li>
 					</ul>
 					<div class="follow_us">
@@ -157,7 +158,7 @@
 					</ul>
 				</div>
 				<div class="col-md-4">
-					<div id="copy">© 2017 Findoctor</div>
+					<div id="copy">© 2017 HappyHealthCare</div>
 				</div>
 			</div>
 		</div>

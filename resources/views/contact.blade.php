@@ -43,12 +43,12 @@
 				<ul>
 					<li><strong>Administration</strong>
 						<a href="tel://003823932342">0038 23932342</a><br><a
-							href="tel://003823932342">admin@findoctor.com</a><br>
+							href="tel://003823932342">admin@happyhealthcare.lk</a><br>
 						<small>Monday to Friday 9am - 7pm</small>
 					</li>
 					<li><strong>General questions</strong>
 						<a href="tel://003823932342">0038 23932342</a><br><a
-							href="tel://003823932342">questions@findoctor.com</a><br>
+							href="tel://003823932342">questions@happyhealthcare.lk</a><br>
 						<p><small>Monday to Friday 9am - 7pm</small></p>
 					</li>
 				</ul>

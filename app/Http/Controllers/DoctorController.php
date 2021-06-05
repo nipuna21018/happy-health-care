@@ -20,11 +20,12 @@ class DoctorController extends Controller
     {
         $keyword = $request->get('search');
         $specialization = $request->get('specialization');
-        $perPage = 25;
+        $perPage = 20;
 
         if (!empty($keyword)) {
             $doctors = Doctor::where('first_name', 'LIKE', "%$keyword%")
                 ->orWhere('last_name', 'LIKE', "%$keyword%")
+                ->orWhere('sub_specializations', 'LIKE', "%$keyword%")
                 ->when($specialization, function ($query, $specialization) {
                     $query->where('specialization', $specialization);
                 })

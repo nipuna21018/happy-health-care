@@ -13,13 +13,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<h4><strong>Showing 10</strong> of 140 results</h4>
+				<h4><strong>Showing {{$doctors->count()}}</strong> of {{$doctors->total()}} results
+					{{Request::get('search')? " for '".Request::get('search')."'" : ""}}</h4>
 			</div>
 			<div class="col-md-6">
-				<div class="search_bar_list">
-					<input type="text" class="form-control" placeholder="Ex. Specialist, Name, Doctor...">
-					<input type="submit" value="Search">
-				</div>
+				<form method="GET" action="{{ route('search') }}" accept-charset="UTF-8" role="search">
+					<div class="search_bar_list">
+						<input type="text" name="search" class="form-control" placeholder="Ex. Name, Specialization...">
+						<input type="submit" value="Search">
+					</div>
+				</form>
 			</div>
 		</div>
 		<!-- /row -->
@@ -69,17 +72,7 @@
 			<!-- /row -->
 
 			<nav aria-label="" class="add_top_20">
-				<ul class="pagination pagination-sm">
-					<li class="page-item disabled">
-						<a class="page-link" href="#" tabindex="-1">Previous</a>
-					</li>
-					<li class="page-item active"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item">
-						<a class="page-link" href="#">Next</a>
-					</li>
-				</ul>
+				<?php echo $doctors->render(); ?>
 			</nav>
 			<!-- /pagination -->
 		</div>
