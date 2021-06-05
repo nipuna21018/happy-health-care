@@ -1,30 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
-     
-<div class="card">
-    <div class="card-header"><h5 class="mb-0">Create New Patient</h5></div>
-    <div class="card-body">
-        <a href="{{ url('/admin/patients') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-        <br />
-        <br />
 
-        @if ($errors->any())
-            <ul class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/') }}">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/patients') }}">Patients</a>
+    </li>
+    <li class="breadcrumb-item active">Add Patient</li>
+</ol>
+<form method="POST" action="{{ url('/admin/patients') }}" accept-charset="UTF-8" class="form-horizontal"
+    enctype="multipart/form-data">
+    {{ csrf_field() }}
 
-        <form method="POST" action="{{ url('/admin/patients') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-            {{ csrf_field() }}
+    @include ('admin.patients.form', ['formMode' => 'create'])
 
-            @include ('admin.patients.form', ['formMode' => 'create'])
+</form>
 
-        </form>
 
-    </div>
-</div>
-        
 @endsection

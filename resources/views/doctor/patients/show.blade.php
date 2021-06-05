@@ -114,12 +114,6 @@
                 </tbody>
             </table>
         </div>
-        {{-- 
-        
-        
-        
-        
-        user_id --}}
     </div>
 </div>
 

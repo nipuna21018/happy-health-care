@@ -1,31 +1,26 @@
 @extends('layouts.admin')
 
 @section('content')
-    
-    <div class="card">
-        <div class="card-header"><h5 class="mb-0">Edit Patient #{{ $patient->id }}</h5></div>
-        <div class="card-body">
-            <a href="{{ url('/admin/patients') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
-            <br />
-            <br />
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/') }}">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="{{ url('/admin/patients') }}">Patients</a>
+    </li>
+    <li class="breadcrumb-item active">Update #{{ $patient->id }}</li>
+</ol>
 
-            @if ($errors->any())
-                <ul class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
 
-            <form method="POST" action="{{ url('/admin/patients/' . $patient->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                {{ method_field('PATCH') }}
-                {{ csrf_field() }}
+<form method="POST" action="{{ url('/admin/patients/' . $patient->id) }}" accept-charset="UTF-8" class="form-horizontal"
+    enctype="multipart/form-data">
+    {{ method_field('PATCH') }}
+    {{ csrf_field() }}
 
-                @include ('admin.patients.form', ['formMode' => 'edit'])
+    @include ('admin.patients.form', ['formMode' => 'edit'])
 
-            </form>
+</form>
 
-        </div>
-    </div>
-       
+
 @endsection
