@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Mail\UserCreated;
 use App\Models\Doctor;
 use App\Models\DoctorSpecialization;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class DoctorsController extends Controller
 {
@@ -79,16 +80,18 @@ class DoctorsController extends Controller
         ]);
         $requestData = $request->all();
 
+        $password = Str::random(8);
+
         // we create a associated user account with a random password
         $user =  User::create([
             'name' => $request->first_name,
             'email' => $request->email,
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make($password),
             'user_type' => User::USER_TYPE_DOCTOR
         ]);
 
-        //@todo
-        // need to send the random generated password to the doctor's email
+        // send the random generated password to the patients's email
+        Mail::to($user)->send(new UserCreated($user, $password));
 
         $requestData['user_id'] = $user->id;
         Doctor::create($requestData);
