@@ -57,6 +57,9 @@ Route::prefix('doctor')->middleware(['auth', 'role:doctor'])->group(function () 
     Route::patch('/inquiry/{id}', 'Doctor\InquiryController@update')->name('doctor.inquiries.show');
     Route::get('/inquiry/{id}/edit', 'Doctor\InquiryController@edit')->name('doctor.inquiries.edit');
     Route::get('/patients/{id}', 'Doctor\PatientsController@show')->name('doctor.patients.show');
+
+    Route::get('/profile', 'Doctor\ProfileController@edit')->name('doctor.profile.edit');
+    Route::patch('/profile', 'Doctor\ProfileController@update')->name('doctor.profile.update');
 });
 
 Route::prefix('pharmacy')->middleware(['auth', 'role:pharmacist'])->group(function () {
