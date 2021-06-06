@@ -64,4 +64,10 @@ Route::prefix('doctor')->middleware(['auth', 'role:doctor'])->group(function () 
 
 Route::prefix('pharmacy')->middleware(['auth', 'role:pharmacist'])->group(function () {
     Route::get('/', 'Pharmacy\DashboardController@index')->name('pharmacy.dashboard');
+    Route::get('/profile', 'Pharmacy\ProfileController@edit')->name('pharmacy.profile.edit');
+    Route::patch('/profile', 'Pharmacy\ProfileController@update')->name('pharmacy.profile.update');
+
+    Route::get('/prescription/{id}', 'Pharmacy\PrescriptionsController@show')->name('pharmacy.prescriptions.show');
+    Route::patch('/prescription/{id}', 'Pharmacy\PrescriptionsController@update')->name('pharmacy.prescriptions.update');
+    Route::get('/prescriptions/{status?}', 'Pharmacy\PrescriptionsController@index')->name('pharmacy.prescriptions.index');
 });
