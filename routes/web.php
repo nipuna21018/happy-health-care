@@ -32,8 +32,17 @@ Route::get('/home', 'HomeController@index');
 Route::get('/doctor-profile/{id}', 'DoctorController@show')->name('doctor-profile');
 Route::get('/search-doctors', 'DoctorController@index')->name('search');
 
+
+/** This endpoint will be triggered by the payhere server 
+ *  does not support localhost. needs to use a public url.
+ *  for development purpose we can use ngrok reverse proxy
+ */
+
+Route::post('patients/pay', 'Patient\InquiryController@store')->name('payhere.notify');
+
 Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])->group(function () {
     Route::get('/inquiry/confirmed', 'Patient\InquiryController@confirmed')->name('inquiries.confirmed');
+    Route::get('/inquiry/cancelled', 'Patient\InquiryController@cancelled')->name('inquiries.cancelled');
     Route::resource('inquiries', 'Patient\InquiryController');
     Route::get('/profile', 'Patient\ProfileController@create')->name('profile.create');
     Route::post('/profile', 'Patient\ProfileController@store')->name('profile.post');

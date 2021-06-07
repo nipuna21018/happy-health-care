@@ -43,6 +43,11 @@ class InquiryController extends Controller
         return view('patient/inquiries.confirmed');
     }
 
+
+    public function cancelled()
+    {
+        return view('patient/inquiries.cancelled');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -53,17 +58,18 @@ class InquiryController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'patient_id' => 'required',
-            'doctor_id' => 'required',
-            'patient_note' => 'required'
-        ]);
+        /** This function will be executed by the payhere server 
+         *  does not support localhost. needs to use a public url.
+         *  for development purpose we can use ngrok reverse proxy
+         */
+
         $requestData = $request->all();
-
-
+        $requestData['patient_note'] = $request->custom_1;
+        $requestData['patient_id'] = explode("|", $request->custom_2)[0];
+        $requestData['doctor_id'] = explode("|", $request->custom_2)[1];
         Prescription::create($requestData);
 
-        return redirect()->route('patient.inquiries.confirmed')->with('flash_message', 'Prescription added!');
+        // return redirect()->route('patient.inquiries.confirmed')->with('flash_message', 'Prescription added!');
     }
 
     /**
