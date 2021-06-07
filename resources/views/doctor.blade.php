@@ -50,8 +50,8 @@
 						<div class="row">
 							<div class="col-lg-5 col-md-4">
 								<figure>
-									<img src="http://www.ansonika.com/findoctor/img/doctor_listing_1.jpg" alt=""
-										class="img-fluid">
+									<img src="{{$doctor->getFirstMediaUrl('avatar') ? $doctor->getFirstMediaUrl('avatar') :asset('admin-template/img/default-doc.jpg')}}"
+										alt="" class="img-fluid">
 								</figure>
 							</div>
 							<div class="col-lg-7 col-md-8">

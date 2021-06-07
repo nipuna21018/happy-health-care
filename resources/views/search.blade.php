@@ -61,8 +61,8 @@
 						<a href="#0" class="wish_bt"></a>
 						<figure>
 							<a href="{{route('doctor-profile', $doctor->id)}}"><img
-									src="http://www.ansonika.com/findoctor/img/doctor_listing_1.jpg" class="img-fluid"
-									alt="">
+									src="{{$doctor->getFirstMediaUrl('avatar') ? $doctor->getFirstMediaUrl('avatar') :asset('admin-template/img/default-doc.jpg')}}"
+									class="img-fluid" alt="">
 								<div class="preview"><span>Read more</span></div>
 							</a>
 						</figure>
