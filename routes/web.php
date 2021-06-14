@@ -48,7 +48,7 @@ Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])
     Route::post('/profile', 'Patient\ProfileController@store')->name('profile.post');
 });
 
-
+Route::get('/report', 'Admin\ReportController@doctorReport');
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('pharmacies', 'Admin\PharmaciesController');
