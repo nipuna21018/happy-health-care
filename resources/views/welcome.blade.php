@@ -13,7 +13,7 @@
 	<div class="content">
 		<h3>Happy Health Care</h3>
 		<p>
-			Here are some tips and news for your healthy life
+			Find the best doctors in the country at your finger tip
 		</p>
 		<a href="{{route('search')}}" class="btn_1 medium">View all Doctors</a>
 	</div>
@@ -24,7 +24,7 @@
 	<div class="container margin_120_95">
 		<div class="main_title">
 			<h2>Just for you</h2>
-			<p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri.</p>
+			<p>Here are some tips and news for your healthy life.</p>
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-md-12">
