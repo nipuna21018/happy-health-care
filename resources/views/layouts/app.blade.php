@@ -74,7 +74,7 @@
 						</li>
 						@else
 						<li><a href="{{ route('login') }}"><i class="pe-7s-user"></i></a></li>
-						<li><a href="{{ route('register') }}"><i class="pe-7s-add-user"></i></a></li>
+						{{-- <li><a href="{{ route('register') }}"><i class="pe-7s-add-user"></i></a></li> --}}
 						@endif
 
 					</ul>
