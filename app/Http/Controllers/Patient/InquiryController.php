@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Models\Patient;
+use App\Models\Payment;
 use App\Models\Pharmacy;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
@@ -67,8 +68,14 @@ class InquiryController extends Controller
         $requestData['patient_note'] = $request->custom_1;
         $requestData['patient_id'] = explode("|", $request->custom_2)[0];
         $requestData['doctor_id'] = explode("|", $request->custom_2)[1];
-        Prescription::create($requestData);
+        $prescription = Prescription::create($requestData);
 
+        $payment = new Payment();
+        $payment->prescription_id = $prescription->id;
+        $payment->payhere_id = $request->payment_id;
+        $payment->pay_type = $request->method;
+        $payment->amount = $request->payhere_amount;
+        $payment->save();
         // return redirect()->route('patient.inquiries.confirmed')->with('flash_message', 'Prescription added!');
     }
 
