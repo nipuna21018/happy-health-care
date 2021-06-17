@@ -49,7 +49,6 @@ Route::prefix('patient')->name('patient.')->middleware(['auth', 'role:patient'])
     Route::post('/profile', 'Patient\ProfileController@store')->name('profile.post');
 });
 
-Route::get('/report', 'Admin\ReportController@doctorReport');
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
     Route::resource('pharmacies', 'Admin\PharmaciesController');
@@ -57,6 +56,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('doctors', 'Admin\DoctorsController');
     Route::resource('doctor-specializations', 'Admin\DoctorSpecializationsController');
     Route::resource('prescriptions', 'Admin\PrescriptionsController');
+    Route::get('report', 'Admin\ReportController@index')->name('admin.reports.index');
+    Route::get('report/income-report', 'Admin\ReportController@income')->name('admin.reports.income');
 });
 
 Route::prefix('doctor')->middleware(['auth', 'role:doctor'])->group(function () {

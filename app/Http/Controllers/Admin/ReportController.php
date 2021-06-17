@@ -11,13 +11,33 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    public function doctorReport(Request $request)
+
+    public function index(Request $request)
+    {
+        $doctors = Doctor::all();
+        $payTypes = [
+            "" => "All Payment Methods",
+            "VISA" => "Visa Cards",
+            "MASTER" => "Master Cards",
+            "AMEX" => "Amex Cards",
+            "EZCASH" => "Dialog Ez Cash",
+            "MCASH" => "Mobitel MCash",
+            "GENIE" => "Dialog Genie App",
+            "VISHWA" => "Sampath Vishwa",
+            "PAYAPP" => "Pay App",
+            "HNB" => "Hatton National Bank",
+            "FRIMI" => "Frimi App"
+        ];
+        return view('admin/reports.index', compact('doctors', 'payTypes'));
+    }
+
+    public function income(Request $request)
     {
         $fromDate = $request->input('from_date', '2021-06-16');
         $toDate = $request->input('to_date', '2021-06-16');
         $sortBy = $request->input('sort_by', 'prescriptions.created_at');
         $doctorId = $request->input('doctor_id', '');
-        $doctorId = $request->input('pay_type_', '');
+        $payType = $request->input('pay_type_', '');
 
         $title = 'Income Report'; // Report title
 
@@ -30,7 +50,8 @@ class ReportController extends Controller
         }
 
         $doctor = Doctor::find($doctorId);
-        $meta['Doctor'] =  $doctor ?  $doctor->first_name : "All";
+        $meta['Payment Method'] =  $payType ?? "All";
+        $meta['Doctor'] =  $doctor ?  $doctor->first_name . " " . $doctor->last_name : "All";
 
         $queryBuilder =  Payment::leftJoin('prescriptions', 'prescriptions.id', '=', 'payments.prescription_id')
             ->leftJoin('doctors', 'doctors.id', '=', 'prescriptions.doctor_id')
@@ -43,11 +64,17 @@ class ReportController extends Controller
                 'amount',
             )
             ->whereBetween('payments.created_at', [$fromDate . " 00:00:00", $toDate . " 23:59:59"])
+            ->when($doctor, function ($query) use ($doctor) {
+                return $query->where('prescriptions.doctor_id', $doctor->id);
+            })
+            ->when($payType, function ($query) use ($payType) {
+                return $query->where('pay_type', $payType);
+            })
             ->orderBy($sortBy);
 
         $columns = [ // Set Column to be displayed
             'Date' => 'created_date',
-            'Pyament Type' => 'pay_type',
+            'Pyament Method' => 'pay_type',
             'Doctor' => 'doctor_name',
             'Patient' => 'patient_name',
             'Amount' => 'amount',
@@ -64,7 +91,6 @@ class ReportController extends Controller
             ->showTotal([ // Used to sum all value on specified column on the last table (except using groupBy method). 'point' is a type for displaying total with a thousand separator
                 'Amount' => 'point' // if you want to show dollar sign ($) then use 'Total Balance' => '$'
             ])
-            ->limit(20) // Limit record to be showed
             ->stream(); // other available method: download('filename') to download pdf / make() that will producing DomPDF / SnappyPdf instance so you could do any other DomPDF / snappyPdf method such as stream() or download()
     }
 }
