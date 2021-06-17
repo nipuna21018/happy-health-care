@@ -59,17 +59,6 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="box_general padding_bottom">
-            <div class="header_box version_2">
-                <h2><i class="fa fa-list"></i>Reports</h2>
-            </div>
-            <div>
-
-
-            </div>
-        </div>
-    </div>
 </div>
 
 
