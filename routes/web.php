@@ -11,6 +11,9 @@
 |
 */
 
+use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -23,8 +26,6 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
-
 
 Auth::routes();
 
