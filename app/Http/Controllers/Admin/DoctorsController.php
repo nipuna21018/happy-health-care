@@ -9,6 +9,7 @@ use App\Models\DoctorSpecialization;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -70,32 +71,33 @@ class DoctorsController extends Controller
      */
     public function store(Request $request)
     {
+        DB::transaction(function () use ($request) {
+            $this->validate($request, [
+                'first_name' => 'required|max:50',
+                'email' => 'required|email|max:50|unique:users,email',
+                'mobile' => 'required|digits:10',
+                'registration_number' => 'required',
+                'professional_statement' => 'required',
+            ]);
+            $requestData = $request->all();
 
-        $this->validate($request, [
-            'first_name' => 'required|max:50',
-            'email' => 'required|email|max:50|unique:users,email',
-            'mobile' => 'required|digits:10',
-            'registration_number' => 'required',
-            'professional_statement' => 'required',
-        ]);
-        $requestData = $request->all();
+            $password = Str::random(8);
 
-        $password = Str::random(8);
+            // we create a associated user account with a random password
+            $user =  User::create([
+                'name' => $request->first_name,
+                'email' => $request->email,
+                'password' => Hash::make($password),
+                'user_type' => User::USER_TYPE_DOCTOR
+            ]);
 
-        // we create a associated user account with a random password
-        $user =  User::create([
-            'name' => $request->first_name,
-            'email' => $request->email,
-            'password' => Hash::make($password),
-            'user_type' => User::USER_TYPE_DOCTOR
-        ]);
+            // send the random generated password to the patients's email
+            Mail::to($user)->send(new UserCreated($user, $password));
 
-        // send the random generated password to the patients's email
-        Mail::to($user)->send(new UserCreated($user, $password));
-
-        $requestData['user_id'] = $user->id;
-        $doctor = Doctor::create($requestData);
-        $doctor->addMedia($request->profile_image);
+            $requestData['user_id'] = $user->id;
+            $doctor = Doctor::create($requestData);
+            $doctor->addMedia($request->profile_image);
+        });
 
         return redirect('admin/doctors')->with('flash_message', 'Doctor added!');
     }
