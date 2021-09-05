@@ -152,8 +152,10 @@ class DoctorsController extends Controller
         $doctor = Doctor::findOrFail($id);
         $doctor->update($requestData);
 
-        $doctor->addMediaFromRequest('profile_image')->toMediaCollection('avatar');
-        $doctor->update();
+        if ($doctor->profile_image) {
+            $doctor->addMediaFromRequest('profile_image')->toMediaCollection('avatar');
+            $doctor->update();
+        }
 
         return redirect('admin/doctors')->with('flash_message', 'Doctor updated!');
     }
