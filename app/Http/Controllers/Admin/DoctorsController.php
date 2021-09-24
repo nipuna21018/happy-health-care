@@ -96,7 +96,10 @@ class DoctorsController extends Controller
 
             $requestData['user_id'] = $user->id;
             $doctor = Doctor::create($requestData);
-            $doctor->addMedia($request->profile_image);
+            if ($request->profile_image) {
+                $doctor->addMediaFromRequest('profile_image')->toMediaCollection('avatar');
+                $doctor->update();
+            }
         });
 
         return redirect('admin/doctors')->with('flash_message', 'Doctor added!');
@@ -152,7 +155,7 @@ class DoctorsController extends Controller
         $doctor = Doctor::findOrFail($id);
         $doctor->update($requestData);
 
-        if ($doctor->profile_image) {
+        if ($request->profile_image) {
             $doctor->addMediaFromRequest('profile_image')->toMediaCollection('avatar');
             $doctor->update();
         }
